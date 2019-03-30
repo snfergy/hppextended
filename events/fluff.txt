@@ -1,0 +1,44 @@
+# Basque surrender to Italians
+
+country_event = {
+
+	id = 9200
+	
+	fire_only_once = yes
+	
+	trigger = {
+		tag = SPR
+		date = 1937.8.24
+		exists = SPA
+	}
+	
+	title = "SPRFNAME1"
+	desc = "SPRFDESC1"
+	picture = "SPA_fascist"
+	
+	option = {
+		name = "SPRFOPTA1"
+	}
+
+}
+
+# Planecrash
+
+country_event = {
+
+	id = 9201
+	
+	trigger = {
+		tag = SPR
+		SPA = { has_country_flag = "sanjurjos_death" }
+	}
+	
+	title = "SPRFNAME2"
+	desc = "SPRFDESC2"
+	picture = "SPA_fascist"
+	
+	option = {
+		name = "SPRFOPTA2"
+	}
+
+}

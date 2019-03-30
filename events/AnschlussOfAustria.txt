@@ -1,0 +1,937 @@
+########################
+# Anschluss of Austria #
+########################
+# Austria - Reaction event, internal pressure
+country_event = {
+
+	id = 1101
+	
+	is_triggered_only = yes
+	
+	title = "EVTNAME1101"
+	desc = "EVTDESC1101"
+	picture = "anchsluss"
+
+	option = {
+		name = "EVTOPTA1101"			# Become a part of the Greater Reich
+		ai_chance = {
+			factor = 99
+			modifier = { factor = 0.0 is_in_any_faction = yes not = { faction = axis } }
+			modifier = { factor = 0.0 ITA = { guarantee = THIS } }
+			modifier = { factor = 0.0 FRA = { guarantee = THIS } }
+			modifier = { factor = 0.0 ENG = { guarantee = THIS } }
+			modifier = { factor = 0.0 ITA = { alliance_with = THIS } }
+			modifier = { factor = 0.0 FRA = { alliance_with = THIS } }
+			modifier = { factor = 0.0 ENG = { alliance_with = THIS } }
+		}
+		any_owned = { limit = { is_core = THIS } add_core = GER }
+		GER = { split_troops = 0.95 }
+		GER = { country_event = 1103 }
+	}
+	option = {
+		name = "EVTOPTC1101"			# Austria shall remain independent
+		ai_chance = { factor = 1 }
+		national_unity = 15
+		relation = { who = GER value = -125 }
+		relation = { who = ITA value = 15 }
+		relation = { who = ENG value = 5 }
+		relation = { who = FRA value = 5 }
+		GER = { country_event = 1105 }
+		GER = { country_event = 1106 }
+	}
+}
+
+# Austria - Reaction event, Military pressure
+country_event = {
+
+	id = 1102
+	
+	is_triggered_only = yes
+	
+	title = "EVTNAME1101"
+	desc = "EVTDESC1101"
+	picture = "anchsluss"
+
+	option = {
+		name = "EVTOPTA1101"			# Become a part of the Greater Reich
+		ai_chance = {
+			factor = 75
+			modifier = { factor = 0.0 is_in_any_faction = yes not = { faction = axis } }
+			modifier = { factor = 0.0 ITA = { guarantee = THIS } }
+			modifier = { factor = 0.0 FRA = { guarantee = THIS } }
+			modifier = { factor = 0.0 ENG = { guarantee = THIS } }
+			modifier = { factor = 0.0 ITA = { alliance_with = THIS } }
+			modifier = { factor = 0.0 FRA = { alliance_with = THIS } }
+			modifier = { factor = 0.0 ENG = { alliance_with = THIS } }
+		}
+		GER = { split_troops = 0.33 }
+		GER = { country_event = 1104 }
+	}
+	option = {
+		name = "EVTOPTC1101"			# Austria shall remain independent
+		ai_chance = { factor = 25 }
+		national_unity = 25
+		relation = { who = GER value = -125 }
+		relation = { who = ITA value = 15 }
+		relation = { who = ENG value = 5 }
+		relation = { who = FRA value = 5 }
+		GER = { country_event = 1105 }
+		GER = { country_event = 1106 }
+	}
+}
+
+
+# Response to Germany - Annexation
+country_event = {
+
+	id = 1103
+	
+	is_triggered_only = yes
+	
+	title = "EVTNAME1102"
+	desc = "EVTDESC1102"
+	picture = "anchsluss"
+
+	option = {
+		name = "Excellent!"			# Excellent
+		inherit = AUS
+		organisation = 5
+		popularity = 5
+		dissent = 3
+		manpower = 200
+	}
+}
+
+# Response to Germany - Annexation
+country_event = {
+
+	id = 1104
+	
+	is_triggered_only = yes
+	
+	title = "EVTNAME1102"
+	desc = "EVTDESC1102"
+	picture = "anchsluss"
+
+	option = {
+		name = "EVTOPTA1102"			# Good
+		inherit = AUS
+		organisation = 5
+		popularity = 2
+		dissent = 5
+		manpower = 100
+	}
+}
+
+# Response to Germany - War with Austria and Italy
+country_event = {
+
+	id = 1105
+	
+	trigger = {
+		ITA = { guarantee = AUS }
+	}
+
+	is_triggered_only = yes
+	
+	title = "EVTNAME1104"
+	desc = "EVTDESC1104"
+	picture = "anchsluss"
+
+	option = {
+		name = "EVTOPTA1104"			# War it is then
+		ai_chance = { factor = 99 }
+		organisation = 5
+		popularity = 1
+		GER = { load_oob = "major_power.txt" }
+		war = {
+			target = AUS
+			attacker_goal = { casus_belli = conquer }
+			defender_goal = { casus_belli = concede_defeat }
+		}
+		add_wargoal = {
+			target = ITA
+			war_goal = { casus_belli = puppet }
+		}
+		ITA = {
+			set_country_flag = "german_italian_war"
+			create_alliance = AUS
+			threat = { who = GER value = 15 }
+			add_wargoal = {
+				target = GER
+				war_goal = { casus_belli = concede_defeat }
+			}
+		}
+	}
+	option = {
+		name = "Whoa, back down!"
+		ai_chance = { factor = 1 }
+		national_unity = -5
+		neutrality = 10
+		organisation = -15
+		popularity = -10
+		threat = { who = all value = -5 }
+		dissent = 5
+	}
+}
+
+# Response to Germany - War with Austria only
+country_event = {
+
+	id = 1106
+
+	trigger = {
+		not = { ITA = { guarantee = AUS } }
+	}
+
+	is_triggered_only = yes
+	
+	title = "EVTNAME1104"
+	desc = "EVTDESC1104"
+	picture = "anchsluss"
+
+	option = {
+		name = "EVTOPTA1104"			# War it is then
+		ai_chance = { factor = 99 }
+		organisation = 5
+		popularity = 1
+		war = {
+			target = AUS
+			attacker_goal = { casus_belli = conquer }
+			defender_goal = { casus_belli = concede_defeat }
+		}
+	}
+	option = {
+		name = "Whoa, back down!"
+		ai_chance = { factor = 1 }
+		national_unity = -5
+		neutrality = 10
+		organisation = -15
+		popularity = -10
+		threat = { who = all value = -5 }
+		dissent = 5
+	}
+}
+
+# German reaction event to Italian armistice proposal
+
+country_event = {
+
+	id = 1107
+
+	is_triggered_only = yes
+
+	title = "Peace with Italy"
+	desc = "Mussolini knows he is losing this war. The Italians are proposing an armistice and are even prepared to surrender the Südtirol region in order to make peace with us."
+	picture = "anchsluss"
+
+	option = {
+		name = "Accept the proposal"
+		ai_chance = { factor = 80 }
+
+		# end the fighting and cede the land
+		threat = { who = all value = -10 }
+		ITA = { sudtirol_region = { secede_province = GER } }
+		end_war = ITA
+		any_country = {
+			limit = {
+				faction = axis
+				war_with = ITA
+			}
+			end_war = ITA
+		}
+		any_country = {
+			limit = {
+				alliance_with = GER
+				war_with = ITA
+			}
+			end_war = ITA
+		}
+		dissent = -10
+		ITA = { country_event = 1108 }
+	}
+	option = {
+		name = "No deals with Mussolini!"
+		ai_chance = { factor = 20 }
+
+		# add the acquire territory war goal (it might be valid now if Austria has fallen)
+		add_wargoal = {
+			target = ITA
+			war_goal = { casus_belli = aquire_territory region = sudtirol_region }
+		}
+		ITA = { country_event = 1109 }
+	}
+}
+
+country_event = {
+
+	id = 1108
+
+	is_triggered_only = yes
+
+	title = "Armistice accepted"
+	desc = "Hitler has accepted our offer to surrender the Südtirol to Germany. The war is over!"
+	picture = "anchsluss"
+
+	option = {
+		name = "A necessary sacrifice!"
+		# punish the government
+		organisation = -10
+		popularity = -10
+		national_unity = -5
+		dissent = 10
+	}
+}
+
+country_event = {
+
+	id = 1109
+
+	is_triggered_only = yes
+
+	title = "Armistice refused"
+	desc = "Hitler has refused our offer to surrender the Südtirol. The war goes on!"
+	picture = "anchsluss"
+
+	option = {
+		name = "This is bad..."
+	}
+}
+
+country_event = {
+	
+	id = 1110
+
+	title = "The end of the Italian-German war"
+	desc = "We have been utterly defeated..."
+	picture = "anchsluss"
+	
+	fire_only_once = yes
+	
+	major = yes
+
+	trigger = {
+		tag = GER
+		exists = GER
+		war_with = ITA 
+		surrender_progress = 99
+		not = { has_country_flag = "german_italian_peace" }
+		ITA = { has_country_flag = "german_italian_war" }
+		ITA = { 
+			not = { faction = comintern } 
+			not = { faction = allies }
+		}
+	}
+
+	option = {
+		name = "We are forced to surrender..."					# Surrender
+		ai_chance = { factor = 100 }
+		set_country_flag = german_italian_peace
+
+		ITA = { country_event = 1111 }
+	}
+}
+
+country_event = {
+	
+	id = 1111
+
+	title = "The Fate of the Third Reich"
+	desc = "Duce, how should we handle Germany?"
+	picture = "anchsluss"
+	
+	is_triggered_only = yes
+	
+
+	option = {
+		name = "Establish a Pro-Fascist Govt."					# Fascist
+		ai_chance = { factor = 25 }
+
+		GER = { country_event = 1112 }
+	}
+	
+	option = {
+		name = "Establish a Pro-Monarchy Govt."					# Paternal Autocratic
+		ai_chance = { factor = 25 }
+
+		GER = { country_event = 1113 }
+	}
+	
+	option = {
+		name = "Purge the Nazi Party"					# Remove hardliners
+		ai_chance = { factor = 25 }
+
+		GER = { country_event = 1114 }
+	}
+	
+	option = {
+		name = "Establish a Conserative democracy"					# Conservatives
+		ai_chance = { factor = 25 }
+
+		GER = { country_event = 1115 }
+	}
+}
+
+country_event = {
+	
+	id = 1112
+
+	title = "Fascists's take control"
+	desc = "After the Italian-German war a new government has taken place"
+	picture = "anchsluss"
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "Fascists in power"					
+		ai_chance = { factor = 100 }
+		
+		government = germanic_fascist_republic
+		paternal_autocrat = { organisation = 15 popularity = 20 }
+		national_socialist = { organisation = -30 popularity = -30 }
+		
+		head_of_state = 7
+		head_of_government = 48
+		foreign_minister = 47
+		armament_minister = 94
+		minister_of_security = 250
+		minister_of_intelligence = 147
+		chief_of_staff = 157
+		chief_of_army = 160
+		chief_of_air = 205		# I have no better option I'm afraid...
+		chief_of_navy = 195
+		load_oob = "Fascistic.txt"
+		
+		# Kill Hitler, if he isn't dead already!
+		remove_minister = 1
+		set_country_flag = "1_removed"
+		# Remove all the Nazis!
+		remove_minister = 2			# Hess
+		set_country_flag = "2_removed"
+		remove_minister = 4			# Blomberg
+		kill_leader = 607
+		set_country_flag = "4_removed"
+		remove_minister = 5			# Frick
+		set_country_flag = "5_removed"
+		remove_minister = 9			# Raeder
+		kill_leader = 409
+		set_country_flag = "9_removed"
+		remove_minister = 32		# Dönitz
+		kill_leader = 389
+		set_country_flag = "32_removed"
+		remove_minister = 10		# Göring
+		kill_leader = 440
+		set_country_flag = "10_removed"
+		remove_minister = 42		# Borman
+		set_country_flag = "42_removed"
+		remove_minister = 55		# Ribbentrop
+		set_country_flag = "55_removed"
+		remove_minister = 57		# Rosenberg
+		set_country_flag = "57_removed"
+		remove_minister = 58		# Seyss-Inquart
+		set_country_flag = "58_removed"
+		remove_minister = 78		# Flick
+		set_country_flag = "78_removed"
+		remove_minister = 80		# Funk
+		set_country_flag = "80_removed"
+		remove_minister = 81		# Darré
+		set_country_flag = "81_removed"
+		remove_minister = 82		# Daluege
+		set_country_flag = "82_removed"
+		remove_minister = 83		# Amman
+		set_country_flag = "83_removed"
+		remove_minister = 84		# Xavier-Schwartz
+		set_country_flag = "84_removed"
+		remove_minister = 87		# Pohl
+		set_country_flag = "87_removed"
+		remove_minister = 88		# Ley
+		set_country_flag = "88_removed"
+		remove_minister = 89		# Saur
+		set_country_flag = "89_removed"
+		remove_minister = 93		# Friedeburg
+		kill_leader = 421
+		set_country_flag = "93_removed"
+		remove_minister = 108		# Himmler
+		set_country_flag = "108_removed"
+		remove_minister = 109		# Lutze
+		set_country_flag = "109_removed"
+		remove_minister = 111		# Müller
+		set_country_flag = "111_removed"
+		remove_minister = 113		# Hanke
+		set_country_flag = "113_removed"
+		remove_minister = 114		# Thierack
+		set_country_flag = "114_removed"
+		remove_minister = 138		# Kaltenbrunner
+		set_country_flag = "138_removed"
+		remove_minister = 153		# Paulus
+		kill_leader = 215
+		set_country_flag = "153_removed"
+		remove_minister = 156		# Jodl
+		kill_leader = 149
+		set_country_flag = "156_removed"
+		remove_minister = 158		# Krebs
+		kill_leader = 170
+		set_country_flag = "158_removed"
+		remove_minister = 176		# Keitel
+		kill_leader = 154
+		set_country_flag = "176_removed"
+		remove_minister = 178		# Schörner
+		kill_leader = 249
+		set_country_flag = "178_removed"
+		remove_minister = 194		# Freiwald
+		kill_leader = 391
+		set_country_flag = "194_removed"
+		remove_minister = 203		# Sperrle
+		kill_leader = 470
+		set_country_flag = "203_removed"
+		remove_minister = 204		# von Greim
+		kill_leader = 475
+		set_country_flag = "204_removed"
+		remove_minister = 214		# von Epp
+		set_country_flag = "214_removed"
+		remove_minister = 216		# Lammers
+		set_country_flag = "216_removed"
+		remove_minister = 217		# Kritzinger
+		set_country_flag = "217_removed"
+		remove_minister = 220		# Seldte
+		set_country_flag = "220_removed"
+		remove_minister = 221		# Hierl
+		set_country_flag = "221_removed"
+		remove_minister = 226		# Buch
+		set_country_flag = "226_removed"
+		remove_minister = 228		# Freisler
+		set_country_flag = "228_removed"
+		remove_minister = 230		# Busch
+		kill_leader = 33
+		set_country_flag = "230_removed"
+		remove_minister = 232		# Hausser
+		kill_leader = 503
+		set_country_flag = "232_removed"
+		remove_minister = 233		# Marschall
+		kill_leader = 407
+		set_country_flag = "233_removed"
+		remove_minister = 235		# Dessloch
+		kill_leader = 434
+		set_country_flag = "235_removed"
+		remove_minister = 237		# Stumpff
+		kill_leader = 471
+		set_country_flag = "237_removed"
+		remove_minister = 238		# von Reichenau
+		kill_leader = 334
+		set_country_flag = "238_removed"
+		remove_minister = 241		# Krosigk
+		set_country_flag = "241_removed"
+		remove_minister = 242		# Giesler
+		set_country_flag = "242_removed"
+		remove_minister = 243		# Neumann
+		set_country_flag = "243_removed"
+		remove_minister = 244		# Heydrich
+		set_country_flag = "244_removed"
+		remove_minister = 246		# Goebbels
+		set_country_flag = "246_removed"
+		remove_minister = 252		# Saukel
+		set_country_flag = "252_removed"
+		
+		threat = { who = all value = -50 }
+	}
+}
+
+country_event = {
+	
+	id = 1113
+
+	title = "Monarchy take control"
+	desc = "After the Italian-German war a new government has taken place"
+	picture = "anchsluss"
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "Monarchists in power"					
+		ai_chance = { factor = 100 }
+		
+		government = constitutional_monarchy
+		paternal_autocrat = { organisation = 15 popularity = 20 }
+		national_socialist = { organisation = -30 popularity = -30 }
+		
+		head_of_state = 37
+		head_of_government = 48
+		foreign_minister = 3
+		armament_minister = 94
+		minister_of_security = 120
+		minister_of_intelligence = 143
+		chief_of_staff = 157
+		chief_of_army = 162
+		chief_of_air = 209		# I have no better option I'm afraid...
+		chief_of_navy = 198
+		load_oob = "paternal_autocrat.txt"
+		
+		# Kill Hitler, if he isn't dead already!
+		remove_minister = 1
+		set_country_flag = "1_removed"
+		# Remove all the Nazis!
+		remove_minister = 2			# Hess
+		set_country_flag = "2_removed"
+		remove_minister = 4			# Blomberg
+		kill_leader = 607
+		set_country_flag = "4_removed"
+		remove_minister = 5			# Frick
+		set_country_flag = "5_removed"
+		remove_minister = 9			# Raeder
+		kill_leader = 409
+		set_country_flag = "9_removed"
+		remove_minister = 32		# Dönitz
+		kill_leader = 389
+		set_country_flag = "32_removed"
+		remove_minister = 10		# Göring
+		kill_leader = 440
+		set_country_flag = "10_removed"
+		remove_minister = 42		# Borman
+		set_country_flag = "42_removed"
+		remove_minister = 55		# Ribbentrop
+		set_country_flag = "55_removed"
+		remove_minister = 57		# Rosenberg
+		set_country_flag = "57_removed"
+		remove_minister = 58		# Seyss-Inquart
+		set_country_flag = "58_removed"
+		remove_minister = 78		# Flick
+		set_country_flag = "78_removed"
+		remove_minister = 80		# Funk
+		set_country_flag = "80_removed"
+		remove_minister = 81		# Darré
+		set_country_flag = "81_removed"
+		remove_minister = 82		# Daluege
+		set_country_flag = "82_removed"
+		remove_minister = 83		# Amman
+		set_country_flag = "83_removed"
+		remove_minister = 84		# Xavier-Schwartz
+		set_country_flag = "84_removed"
+		remove_minister = 87		# Pohl
+		set_country_flag = "87_removed"
+		remove_minister = 88		# Ley
+		set_country_flag = "88_removed"
+		remove_minister = 89		# Saur
+		set_country_flag = "89_removed"
+		remove_minister = 93		# Friedeburg
+		kill_leader = 421
+		set_country_flag = "93_removed"
+		remove_minister = 108		# Himmler
+		set_country_flag = "108_removed"
+		remove_minister = 109		# Lutze
+		set_country_flag = "109_removed"
+		remove_minister = 111		# Müller
+		set_country_flag = "111_removed"
+		remove_minister = 113		# Hanke
+		set_country_flag = "113_removed"
+		remove_minister = 114		# Thierack
+		set_country_flag = "114_removed"
+		remove_minister = 138		# Kaltenbrunner
+		set_country_flag = "138_removed"
+		remove_minister = 153		# Paulus
+		kill_leader = 215
+		set_country_flag = "153_removed"
+		remove_minister = 156		# Jodl
+		kill_leader = 149
+		set_country_flag = "156_removed"
+		remove_minister = 158		# Krebs
+		kill_leader = 170
+		set_country_flag = "158_removed"
+		remove_minister = 176		# Keitel
+		kill_leader = 154
+		set_country_flag = "176_removed"
+		remove_minister = 178		# Schörner
+		kill_leader = 249
+		set_country_flag = "178_removed"
+		remove_minister = 194		# Freiwald
+		kill_leader = 391
+		set_country_flag = "194_removed"
+		remove_minister = 203		# Sperrle
+		kill_leader = 470
+		set_country_flag = "203_removed"
+		remove_minister = 204		# von Greim
+		kill_leader = 475
+		set_country_flag = "204_removed"
+		remove_minister = 214		# von Epp
+		set_country_flag = "214_removed"
+		remove_minister = 216		# Lammers
+		set_country_flag = "216_removed"
+		remove_minister = 217		# Kritzinger
+		set_country_flag = "217_removed"
+		remove_minister = 220		# Seldte
+		set_country_flag = "220_removed"
+		remove_minister = 221		# Hierl
+		set_country_flag = "221_removed"
+		remove_minister = 226		# Buch
+		set_country_flag = "226_removed"
+		remove_minister = 228		# Freisler
+		set_country_flag = "228_removed"
+		remove_minister = 230		# Busch
+		kill_leader = 33
+		set_country_flag = "230_removed"
+		remove_minister = 232		# Hausser
+		kill_leader = 503
+		set_country_flag = "232_removed"
+		remove_minister = 233		# Marschall
+		kill_leader = 407
+		set_country_flag = "233_removed"
+		remove_minister = 235		# Dessloch
+		kill_leader = 434
+		set_country_flag = "235_removed"
+		remove_minister = 237		# Stumpff
+		kill_leader = 471
+		set_country_flag = "237_removed"
+		remove_minister = 238		# von Reichenau
+		kill_leader = 334
+		set_country_flag = "238_removed"
+		remove_minister = 241		# Krosigk
+		set_country_flag = "241_removed"
+		remove_minister = 242		# Giesler
+		set_country_flag = "242_removed"
+		remove_minister = 243		# Neumann
+		set_country_flag = "243_removed"
+		remove_minister = 244		# Heydrich
+		set_country_flag = "244_removed"
+		remove_minister = 246		# Goebbels
+		set_country_flag = "246_removed"
+		remove_minister = 252		# Saukel
+		set_country_flag = "252_removed"
+		
+		threat = { who = all value = -25 }
+	}
+}
+
+country_event = {
+	
+	id = 1114
+
+	title = "Nazi hardliners purged"
+	desc = "After the Italian-German war a new government has taken place"
+	picture = "anchsluss"
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "Hardline Nazi's are removed"
+		
+		paternal_autocrat = { organisation = 5 popularity = 10 }
+		national_socialist = { organisation = -10 popularity = -5 }
+		
+		head_of_state = 7
+		head_of_government = 48
+		foreign_minister = 69
+		armament_minister = 96
+		minister_of_security = 125
+		minister_of_intelligence = 124
+		chief_of_staff = 157
+		chief_of_army = 162
+		chief_of_air = 206		# I have no better option I'm afraid...
+		chief_of_navy = 234
+		
+		
+		# Kill Hitler, if he isn't dead already!
+		remove_minister = 1
+		set_country_flag = "1_removed"
+		# Remove the hardliner Nazis only!
+		remove_minister = 2			# Hess
+		set_country_flag = "2_removed"
+		remove_minister = 10		# Göring
+		set_country_flag = "10_removed"
+		remove_minister = 42		# Borman
+		set_country_flag = "42_removed"
+		remove_minister = 55		# Ribbentrop
+		set_country_flag = "55_removed"
+		remove_minister = 57		# Rosenberg
+		set_country_flag = "57_removed"
+		remove_minister = 108		# Himmler
+		set_country_flag = "108_removed"
+		remove_minister = 246		# Goebbels
+		set_country_flag = "246_removed"
+		
+		threat = { who = all value = -10 }
+	}
+}
+
+country_event = {
+	
+	id = 1115
+	
+	title = "Conservative's take control"
+	desc = "After the Italian-German war a new government has taken place"
+	picture = "anchsluss"
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "Conservatives are in power"
+		
+		any_country = {						# Remove the German cores
+			any_owned = {
+				limit = { is_core = GER }
+				remove_core = GER
+			}
+		}
+		any_owned = {
+			limit = { is_core = GER }
+			remove_core = GER
+		}
+		
+		
+		# Give cores for both of the new potential Germanies in the core regions.
+		west_germany_region = { add_core = DDR add_core = DFR }
+		east_germany_region = { add_core = DDR add_core = DFR }
+		polish_germany_region = { add_core = DDR add_core = DFR }
+		
+		DFR = { inherit = GER }
+		
+		# Kill Hitler, if he isn't dead already!
+		remove_minister = 1
+		set_country_flag = "1_removed"
+		# Remove all the Nazis!
+		remove_minister = 2			# Hess
+		set_country_flag = "2_removed"
+		remove_minister = 4			# Blomberg
+		kill_leader = 607
+		set_country_flag = "4_removed"
+		remove_minister = 5			# Frick
+		set_country_flag = "5_removed"
+		remove_minister = 9			# Raeder
+		kill_leader = 409
+		set_country_flag = "9_removed"
+		remove_minister = 32		# Dönitz
+		kill_leader = 389
+		set_country_flag = "32_removed"
+		remove_minister = 10		# Göring
+		kill_leader = 440
+		set_country_flag = "10_removed"
+		remove_minister = 42		# Borman
+		set_country_flag = "42_removed"
+		remove_minister = 55		# Ribbentrop
+		set_country_flag = "55_removed"
+		remove_minister = 57		# Rosenberg
+		set_country_flag = "57_removed"
+		remove_minister = 58		# Seyss-Inquart
+		set_country_flag = "58_removed"
+		remove_minister = 78		# Flick
+		set_country_flag = "78_removed"
+		remove_minister = 80		# Funk
+		set_country_flag = "80_removed"
+		remove_minister = 81		# Darré
+		set_country_flag = "81_removed"
+		remove_minister = 82		# Daluege
+		set_country_flag = "82_removed"
+		remove_minister = 83		# Amman
+		set_country_flag = "83_removed"
+		remove_minister = 84		# Xavier-Schwartz
+		set_country_flag = "84_removed"
+		remove_minister = 87		# Pohl
+		set_country_flag = "87_removed"
+		remove_minister = 88		# Ley
+		set_country_flag = "88_removed"
+		remove_minister = 89		# Saur
+		set_country_flag = "89_removed"
+		remove_minister = 93		# Friedeburg
+		kill_leader = 421
+		set_country_flag = "93_removed"
+		remove_minister = 108		# Himmler
+		set_country_flag = "108_removed"
+		remove_minister = 109		# Lutze
+		set_country_flag = "109_removed"
+		remove_minister = 111		# Müller
+		set_country_flag = "111_removed"
+		remove_minister = 113		# Hanke
+		set_country_flag = "113_removed"
+		remove_minister = 114		# Thierack
+		set_country_flag = "114_removed"
+		remove_minister = 138		# Kaltenbrunner
+		set_country_flag = "138_removed"
+		remove_minister = 153		# Paulus
+		kill_leader = 215
+		set_country_flag = "153_removed"
+		remove_minister = 156		# Jodl
+		kill_leader = 149
+		set_country_flag = "156_removed"
+		remove_minister = 158		# Krebs
+		kill_leader = 170
+		set_country_flag = "158_removed"
+		remove_minister = 176		# Keitel
+		kill_leader = 154
+		set_country_flag = "176_removed"
+		remove_minister = 178		# Schörner
+		kill_leader = 249
+		set_country_flag = "178_removed"
+		remove_minister = 194		# Freiwald
+		kill_leader = 391
+		set_country_flag = "194_removed"
+		remove_minister = 203		# Sperrle
+		kill_leader = 470
+		set_country_flag = "203_removed"
+		remove_minister = 204		# von Greim
+		kill_leader = 475
+		set_country_flag = "204_removed"
+		remove_minister = 214		# von Epp
+		set_country_flag = "214_removed"
+		remove_minister = 216		# Lammers
+		set_country_flag = "216_removed"
+		remove_minister = 217		# Kritzinger
+		set_country_flag = "217_removed"
+		remove_minister = 220		# Seldte
+		set_country_flag = "220_removed"
+		remove_minister = 221		# Hierl
+		set_country_flag = "221_removed"
+		remove_minister = 226		# Buch
+		set_country_flag = "226_removed"
+		remove_minister = 228		# Freisler
+		set_country_flag = "228_removed"
+		remove_minister = 230		# Busch
+		kill_leader = 33
+		set_country_flag = "230_removed"
+		remove_minister = 232		# Hausser
+		kill_leader = 503
+		set_country_flag = "232_removed"
+		remove_minister = 233		# Marschall
+		kill_leader = 407
+		set_country_flag = "233_removed"
+		remove_minister = 235		# Dessloch
+		kill_leader = 434
+		set_country_flag = "235_removed"
+		remove_minister = 237		# Stumpff
+		kill_leader = 471
+		set_country_flag = "237_removed"
+		remove_minister = 238		# von Reichenau
+		kill_leader = 334
+		set_country_flag = "238_removed"
+		remove_minister = 241		# Krosigk
+		set_country_flag = "241_removed"
+		remove_minister = 242		# Giesler
+		set_country_flag = "242_removed"
+		remove_minister = 243		# Neumann
+		set_country_flag = "243_removed"
+		remove_minister = 244		# Heydrich
+		set_country_flag = "244_removed"
+		remove_minister = 246		# Goebbels
+		set_country_flag = "246_removed"
+		remove_minister = 252		# Saukel
+		set_country_flag = "252_removed"
+		
+		threat = { who = all value = -50 }
+		
+		DFR = { country_event = 1116 }
+	}
+}
+
+country_event = {
+	
+	id = 1116
+	
+	title = "The Federal Republic"
+	desc = ""
+	picture = "anchsluss"
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "Democracy is established"
+		manpower = 600
+		load_oob = "DFR_1936.txt"
+	}
+}

@@ -1,0 +1,326 @@
+country_event = {
+	
+	id = 2870
+
+	fire_only_once = yes
+	
+	trigger = {
+		not = { has_country_flag = "manchuko_officer_schools" }
+		date = 1937.1.1
+		tag = MAN
+		vassal_of = JAP 
+	}
+
+	title = "Japanese Millitary Academies"
+	desc = "The need to foster a reliable and efficent Manchukuoan army and officer cadre led to the establishment of several academies. Under the supervision of Japanese advisors, various ethnic groups were trained. This will be simulated with a event modifier"
+	picture = "khalkhin_gol"
+	
+	option = {
+		name = "Great"
+		add_country_modifier = { 
+			name = "manchuko_officer_schools" 
+			duration = -1
+		}
+		set_country_flag = "manchuko_officer_schools"
+	}
+	
+}
+
+country_event = {
+	
+	id = 2871
+
+	fire_only_once = yes
+	
+	trigger = {
+		has_country_flag = "manchuko_officer_schools"
+		tag = MAN
+		not = { vassal_of = JAP }
+	}
+
+	title = "Japanese Millitary Academies"
+	desc = "With our declaration of independence and removal of Japanese staff we've lost the aid of their advisors. We will still however be able to operate already established academies now under Manchukoan jurisdiction"
+	picture = "khalkhin_gol"
+	
+	option = {
+		name = "Great"
+		remove_country_modifier = "manchuko_officer_schools" 
+		add_country_modifier = { 
+			name = "indep_manchuko_officer_schools" 
+			duration = -1
+		}
+		clr_country_flag = "manchuko_officer_schools"
+		set_country_flag = "indep_manchuko_officer_schools"
+	}
+	
+}
+
+#This event is for if the player decides to annex Manchuko via event
+country_event = {
+
+	id = 2872
+	
+	fire_only_once = yes
+	
+	trigger = {
+		date = 1936.1.7
+		tag = JAP
+		not = { exists = MAN }
+	}
+
+	title = "MANFNAME1"
+	desc = "MANFDESC1"
+	picture = "khalkhin_gol"
+	
+	
+	option = {
+		name = "MANFOPTB1"
+		set_country_flag = "aide_japanese_insurgents"
+		any_owned = {
+			limit = {
+				is_core = MAN
+			}
+			add_province_modifier = {
+				name = "manchuko_partisans"
+				duration = -1
+			}
+		}
+	}
+	
+}
+
+#Ditto
+country_event = {
+
+	id = 2873
+	
+	fire_only_once = yes
+	
+	trigger = {
+		year = 1937
+		tag = JAP
+		not = { exists = MAN }
+		has_country_flag = "aide_japanese_insurgents"
+	}
+
+	title = "MANFNAME2"
+	desc = "MANFDESC2"
+	picture = "khalkhin_gol"
+	
+	
+	option = {
+		name = "MANFOPTB2"
+		any_owned = { remove_province_modifier =  "manchuko_partisans" }
+		any_owned = {
+			limit = {
+				is_core = MAN
+			}
+			add_province_modifier = {
+				name = "manchuko_partisans_2"
+				duration = -1
+			}
+		}
+		clr_country_flag = "aide_japanese_insurgents"
+		set_country_flag = "aide_japanese_insurgents_2"
+	}
+	
+}
+
+#Ditto
+country_event = {
+
+	id = 2874
+	
+	fire_only_once = yes
+	
+	trigger = {
+		year = 1938
+		tag = JAP
+		not = { exists = MAN }
+		has_country_flag = "aide_japanese_insurgents_2"
+	}
+
+	title = "MANFNAME3"
+	desc = "MANFDESC3"
+	picture = "khalkhin_gol"
+	
+	
+	option = {
+		name = "MANFOPTA3"
+		any_owned = { remove_province_modifier =  "manchuko_partisans_2" }
+		clr_country_flag = "aide_japanese_insurgents_2"
+	}
+	
+}
+
+country_event = {
+
+	id = 2875
+	
+	fire_only_once = yes
+	
+	trigger = {
+		date = 1936.1.3
+		tag = MAN
+	}
+
+	title = "MANFNAME1"
+	desc = "MANFDESC1"
+	picture = "khalkhin_gol"
+	
+	option = {
+		name = "MANFOPTA1"
+		set_country_flag = "subvert_japanese_insurgents"
+		any_owned = {
+			limit = {
+				is_core = MAN
+			}
+			add_province_modifier = {
+				name = "manchuko_partisans"
+				duration = -1
+			}
+		}
+	}
+	
+	option = {
+		name = "MANFOPTB1"
+		ai_chance = { factor = 100 }
+		set_country_flag = "aide_japanese_insurgents"
+		any_owned = {
+			limit = {
+				is_core = MAN
+			}
+			add_province_modifier = {
+				name = "manchuko_partisans"
+				duration = -1
+			}
+		}
+	}
+	
+}
+
+country_event = {
+
+	id = 2876
+	
+	fire_only_once = yes
+	
+	trigger = {
+		year = 1937
+		tag = MAN
+		has_country_flag = "aide_japanese_insurgents"
+	}
+
+	title = "MANFNAME2"
+	desc = "MANFDESC2"
+	picture = "khalkhin_gol"
+	
+	option = {
+		name = "MANFOPTA2"
+		any_owned = { remove_province_modifier =  "manchuko_partisans" }
+		any_owned = {
+			limit = {
+				is_core = MAN
+			}
+			add_province_modifier = {
+				name = "manchuko_partisans_2"
+				duration = -1
+			}
+		}
+		clr_country_flag = "aide_japanese_insurgents"
+		set_country_flag = "subvert_japanese_insurgents_2"
+	}
+	
+	option = {
+		name = "MANFOPTB2"
+		ai_chance = { factor = 100 }
+		any_owned = { remove_province_modifier =  "manchuko_partisans" }
+		any_owned = {
+			limit = {
+				is_core = MAN
+			}
+			add_province_modifier = {
+				name = "manchuko_partisans_2"
+				duration = -1
+			}
+		}
+		clr_country_flag = "aide_japanese_insurgents"
+		set_country_flag = "aide_japanese_insurgents_2"
+	}
+	
+}
+
+country_event = {
+
+	id = 2877
+	
+	fire_only_once = yes
+	
+	trigger = {
+		year = 1938
+		tag = MAN
+		has_country_flag = "aide_japanese_insurgents_2"
+	}
+
+	title = "MANFNAME3"
+	desc = "MANFDESC3"
+	picture = "khalkhin_gol"
+	
+	option = {
+		name = "MANFOPTA3"
+		ai_chance = { factor = 100 }
+		any_owned = { remove_province_modifier =  "manchuko_partisans_2" }
+		clr_country_flag = "aide_japanese_insurgents_2"
+	}
+	
+}
+
+country_event = {
+
+	id = 2878
+	
+	is_triggered_only = yes
+
+	title = "MANFNAME4"
+	desc = "MANFDESC4"
+	picture = "Xian_Incident"
+		
+	option = {
+		name = "MANFOPTA4"
+		set_country_flag = "man_unified_front"
+		
+	}
+	
+	option = {
+		name = "MANFOPTB4"
+		ai_chance = { factor = 100 }
+		set_country_flag = "loyal_japanese"
+	}
+	
+}
+
+country_event = {
+
+	id = 2879
+	
+	trigger = {
+		tag = MAN		
+		MAN = { has_country_flag = "unified_front" }
+	}	
+	
+	fire_only_once = yes
+	
+	title = "War!"
+	desc = "We've declared war on the Japanese"
+	picture = "Xian_Incident"
+		
+	option = {
+		name = "To arms!"
+		MAN = { 
+				war = {
+					target = JAP
+					attacker_goal = { casus_belli = aquire_all_cores }
+				}
+		}
+	}
+}

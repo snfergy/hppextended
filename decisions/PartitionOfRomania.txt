@@ -1,0 +1,46 @@
+#########################
+# Partition of Romania #
+#########################
+
+diplomatic_decisions = {
+
+	ger_rom_wargoal = {
+		potential = {
+			tag = GER
+			ROM = { has_country_flag = "stood_with_poland" }
+			ROM = { war_with = GER }
+		}
+		allow = {
+			ROM = {
+				is_subject = no
+				is_in_any_faction = no
+			}
+		}
+		effect = {
+			GER = { country_event = 2335 }
+			ROM = { clr_country_flag = "stood_with_poland" }
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	sov_demand_bessarabia = {
+		potential = {
+			tag = SOV
+			not = { war_with = GER }
+			has_country_flag = "mol_rib_pact"
+			or = {
+				bessarabia = { controlled_by = GER }
+				and = {
+					ROM = { vassal_of = GER }
+					bessarabia = { controlled_by = ROM }
+				}
+			}
+		}
+		effect = {
+			GER = { country_event = 2336 }
+		}
+	}
+	
+}

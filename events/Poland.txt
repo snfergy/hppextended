@@ -1,0 +1,277 @@
+#####################################################
+### Most events here are from You Forgot Poland Mod
+### Modified by RangerPL for HPP
+### Credit to Halibutt for original events
+#####################################################
+
+# Response to Czech protests to annexation of Sudetenland
+country_event = {
+	
+	id = 2330
+
+	major = yes
+	
+	is_triggered_only = yes
+
+	title = "The Treaty of Munich"
+	desc = "polish_treaty_of_munich_desc"
+	picture = "POL_zyndram"
+
+	option = {
+		name = "We've got nothing to do with this"			# Historical choice
+		ai_chance = { factor = 90 }
+		POL = { set_country_flag = "pol_appease_germany" }
+	}
+	
+	option = {
+		name = "Enough German appeasement!"					# Ahistorical choice
+		ai_chance = { factor = 10 }
+		POL = { set_country_flag = "pol_no_appease_germany" }
+	}	
+	
+}
+
+# Event to change Polish ministers
+country_event = {
+	
+	id = 2331
+
+	trigger = {
+		tag = POL
+		not = { has_country_flag = "sanacja_reconstruction" }
+		year = 1936
+		month = 5
+		head_of_government = 13002 # Zyndram-Koscialkowski
+	}
+
+	mean_time_to_happen =  {
+		days = 5
+	}
+	
+	title = "Government reconstruction"
+	desc = "polgovtchange_desc"
+	picture = "POL_zyndram"
+
+	option = {
+		name = "Appoint Slawoj-Skladkowski!"			# Historical choice
+		ai_chance = { factor = 90 }
+		set_country_flag = "sanacja_reconstruction"
+		head_of_government = 13041 			# Slawoj-Skladkowski
+		foreign_minister = 13003 			# Beck
+		armament_minister = 13052 			# Kwiatkowski
+		minister_of_security = 13002 		# Zyndram-Koscialkowski
+		minister_of_intelligence = 13006 	# Pelczynski
+		chief_of_staff = 13115 				# Stachiewicz
+		chief_of_army = 13007 				# Rydz-Smigly
+		chief_of_navy = 13130 				# Unrug
+		chief_of_air = 13134 				# Rayski
+		organisation = 5					# This would reduce fighting within the government
+		popularity = -5						# But it would also alienate followers of Slawek
+		neutrality = -2						# Militarists gain more power
+	}
+	
+	option = {
+		name = "Appoint Walery Slawek!"					# Ahistorical choice
+		ai_chance = { factor = 8 } 
+		set_country_flag = "sanacja_reconstruction"
+		head_of_government = 13040 						# Slawek
+		foreign_minister = 13058 						# Zaleski
+		armament_minister = 13082 						# Koc
+		minister_of_security = 13144 					# Jedrzejewicz
+		minister_of_intelligence = 13006 				# Pelczynski
+		chief_of_staff = 13173 							# Klimecki
+		organisation = -5								# Increased fighting within the government
+		popularity = 5									# Followers of Slawek aren't alienated
+		neutrality = 2									# Militarists lose power
+
+	}	
+		
+	option = {
+		name = "Leave my ministers in peace, will you?"		# I'm fine with my ministers
+		set_country_flag = "sanacja_reconstruction"
+		ai_chance = { factor = 2 }
+		organisation = -2 									# You didn't get rid of the opposing faction completely!
+	}
+}
+
+country_event = {
+	
+	# Polish reaction to Sudetenland annexation, pursues allaince with ROM
+	
+	id = 2332
+
+	fire_only_once = yes
+	
+	trigger = {
+		tag = POL
+		GER = {	controls = 2498 }
+	}
+	
+	title = "Polish–Romanian Alliance"
+	desc = "polish_czechoslovakia_reaction_desc"
+	picture = "POL_zyndram"
+
+	option = {
+		name = "Pursue a Romanian alliance"
+		ai_chance = { factor = 90 }
+		ROM = { country_event = 2333}
+	}
+	
+	option = {
+		name = "Poland doesn't need their help"					# Ahistorical choice
+		ai_chance = { factor = 10 } 
+	}	
+
+}
+
+country_event = {
+	
+	#ROM reaction event
+	
+	id = 2333
+
+	is_triggered_only = yes
+	
+	title = "Polish–Romanian Alliance"
+	desc = "polish_czechoslovakia_reaction_desc"
+	picture = "POL_zyndram"
+
+	option = {
+		name = "Accept their proposal"
+		ai_chance = { factor = 90 }
+		set_country_flag = "polish_romanian_alliance"
+		POL = { set_country_flag = "polish_romanian_alliance" }
+		ROM = { relation = { who = POL value = 50 } }
+		POL = { relation = { who = ROM value = 50 } }
+		create_alliance = POL
+	}
+	
+	option = {
+		name = "Decline their proposal"					# Ahistorical choice
+		ai_chance = { factor = 10 } 
+		relation = { who = POL value = -25 }
+	}	
+
+}
+
+country_event = {
+	
+	#POL call to arms for ROM
+	
+	id = 2334
+
+	fire_only_once = yes
+	
+	trigger = {
+		tag = POL
+		war_with = GER
+		THIS = { has_country_flag = "polish_romanian_alliance" }
+	}
+	
+	title = "A call to arms"
+	desc = "polish_romanian_call_to_arms_desc"
+	picture = "POL_zyndram"
+
+	option = {
+		name = "There's no need"
+		ai_chance = { factor = 90 }
+		clr_country_flag = "polish_romanian_alliance"
+		leave_alliance = ROM
+	}
+	
+	option = {
+		name = "We shall fight together!"					# Ahistorical choice
+		ROM = { set_country_flag = "stood_with_poland" }
+		GER = { country_event = 2335 }
+		ai_chance = { 
+			factor = 10 
+			modifier = { factor = 10 NOT = { ENG = { guarantee = POL } }
+			} 
+		}	
+	}
+}
+
+country_event = {
+	
+	#Gives Germany a conquer CB on Romania
+	
+	id = 2335
+
+	is_triggered_only = yes
+	
+	title = "The Romanians join the war!"
+	desc = "polish_romanian_call_to_arms_accepted_desc"
+	picture = "POL_zyndram"
+
+	option = {
+		name = "These fools think they can stop us"
+		war = {
+			target = ROM
+			attacker_goal = { casus_belli = conquer }
+			defender_goal = { casus_belli = concede_defeat }
+		}
+	}
+	
+		
+}
+
+
+country_event = {
+	
+	#Partition of Romania, GER may decide how to divide them with SOV
+	#This event will deal with Besarabia first if you're not at war with the Soviets and have signed the M-R Pact
+	
+	id = 2336
+
+	is_triggered_only = yes
+	
+	title = "Partition of Romania"
+	desc = "german_partition_of_romania_desc"
+	picture = "POL_zyndram"
+
+	option = {
+		name = "Give them what they want"
+		ai_chance = { factor = 90 }
+		ROM = { bessarabia = { limit = { controlled_by = ROM } secede_province = SOV change_controller = SOV } }
+		GER = { bessarabia = { limit = { controlled_by = THIS } secede_province = SOV change_controller = SOV } }
+		threat = { who = SOV value = -5 }
+	}
+	
+	option = {
+		name = "Keep Bessarabia"
+		ai_chance = { factor = 10 } 
+		threat = { who = SOV value = 5 }
+		relation = { who = SOV value = -25 } #This will anger the SU for GER not upholding the M-R Pact and encroaching on their sphere of influence
+	}	
+}
+
+country_event = {
+	
+	#POL allows Soviet troops to move through their country to enforce Czech sovereignty if Germany declares war on them and the M-R Pact is not signed.
+	
+	major = yes
+	
+	id = 2337
+
+	is_triggered_only = yes
+	
+	title = "The Czech Crisis"
+	desc = "The sovereignty of Czechoslovakia is guaranteed by both France and the Soviets, however without our consent the Soviets have no means to enforce it. Shall we allow them to move troops through our country?"
+	picture = "POL_zyndram"
+
+	option = {
+		name = "Allow the Soviets through our borders"
+		ai_chance = { factor = 90 }
+		SOV = { military_access = POL } 
+		2835 = { secede_province = SOV }
+		2901 = { secede_province = SOV }
+		3036 = { secede_province = SOV }
+		
+	}
+	
+	option = {
+		name = "Poland will not allow filth in its border"
+		ai_chance = { factor = 10 } 
+		relation = { who = SOV value = -25 }
+	}	
+}

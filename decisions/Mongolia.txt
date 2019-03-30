@@ -1,0 +1,34 @@
+###########################
+# Return Land to Mongolia #
+###########################
+diplomatic_decisions = {
+
+	outer_mongolia = {
+		major = yes
+		potential = {
+			tag = SOV
+			exists = MON
+			any_owned_province = {
+				is_core = MON
+				not = { is_core = THIS }
+			}
+			not = { war_with = MON }
+			MON = { vassal_of = THIS }
+		}
+		allow = {
+		}
+		effect = {
+			any_owned = {
+				limit = {
+					is_core = MON
+					not = { is_core = THIS }
+				}
+				secede_province = MON
+			}
+			
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

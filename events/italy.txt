@@ -1,0 +1,284 @@
+# Opening of the Libyan highway
+
+country_event = {
+
+	id = 8010
+	
+	fire_only_once = yes
+	
+	trigger = {
+		date = 1937.03.01
+		libya_region = { controlled_by = THIS }
+	}
+	
+	title = "ITAFNAME1"
+	desc = "ITAFDESC1"
+	picture = "iraqi_coup"
+	
+	option = {
+		name = "ITAFOPTA1"
+		5443 = { infra = 3 }
+		5444 = { infra = 3 }
+		5460 = { infra = 3 }
+		5445 = { infra = 1 } # Tripoli
+		5461 = { infra = 3 }
+		5462 = { infra = 3 }
+		5483 = { infra = 3 }
+		5505 = { infra = 3 }
+		5527 = { infra = 3 }
+		5550 = { infra = 3 }
+		5551 = { infra = 3 }
+		5578 = { infra = 3 }
+		5603 = { infra = 3 }
+		5604 = { infra = 3 }
+		5626 = { infra = 3 }
+		5605 = { infra = 3 }
+		5580 = { infra = 3 }
+		5506 = { infra = 3 }
+		5484 = { infra = 1 } # Bengasi
+		5463 = { infra = 3 }
+		5464 = { infra = 3 }
+		5446 = { infra = 3 }
+		5465 = { infra = 3 }
+		5487 = { infra = 3 }
+		5488 = { infra = 3 }
+		5510 = { infra = 3 }
+		5511 = { infra = 2 } # Tobruch
+		5533 = { infra = 3 }
+	}
+
+}
+
+# Settlement of Italian colonists
+
+country_event = {
+
+	id = 8011
+	
+	fire_only_once = yes
+	
+	trigger = {
+		tag = ITA
+		date = 1937.04.01
+		libya_region = { controlled_by = ITA }
+	}
+	
+	title = "ITAFNAME2"
+	desc = "ITAFDESC2"
+	picture = "iraqi_coup"
+	
+	option = {
+		name = "ITAFOPTA2"
+		5463 = { add_core = ITA }
+		5464 = { add_core = ITA }
+	}
+
+}
+
+# Beginning of road work
+
+country_event = {
+
+	id = 8012
+	
+	fire_only_once = yes
+	
+	trigger = {
+		date = 1940.06.01 #Work began in June
+		tag = ITA
+		war_with = ENG
+		war_with = EGY
+		ITA = {
+			controls = 5533
+			controls = 5557
+			controls = 5534
+		}
+	}
+	
+	title = "ITAFNAME3"
+	desc = "ITAFDESC3"
+	picture = "iraqi_coup"
+	
+	option = {
+		name = "ITAFOPTA3"
+		ai_chance = { factor = 100 }
+		supplies = -2500
+		5533 = { infra = 1 }
+		5557 = { infra = 1 }
+		5534 = { infra = 1 }
+		ITA = { set_country_flag = "victory_road" }
+	}
+	option = {
+		name = "ITAFOPTB3"
+		ai_chance = { factor = 0 }
+	}
+
+}
+
+# Pt 2 of Road work
+
+country_event = {
+
+	id = 8013
+	
+	fire_only_once = yes
+	
+	trigger = {
+		date = 1940.12.01 # Work finished in December
+		tag = ITA
+		war_with = ENG
+		war_with = EGY
+		ITA = { 
+					has_country_flag = "victory_road" # Requires the first event to have been accepted
+					controls = 5533
+					controls = 5557
+					controls = 5534
+		}
+	}
+
+	
+	title = "ITAFNAME3"
+	desc = "ITAFDESC3"
+	picture = "iraqi_coup"
+	
+	option = {
+		name = "ITAFOPTA3"
+		ai_chance = { factor = 100 }
+		supplies = -2500
+		5533 = { infra = 2 }
+		5557 = { infra = 2 }
+		5534 = { infra = 2 }
+		clr_country_flag = "victory_road" # Cleanup of Flags!
+	}
+	option = {
+		name = "ITAFOPTB3"
+		ai_chance = { factor = 0 }
+	}
+
+}
+
+# Libyan volunteers in Army
+
+country_event = {
+
+	id = 8014
+	
+	fire_only_once = yes
+	
+	trigger = {
+		date = 1940.8.01
+		tag = ITA
+		war_with = ENG
+		war_with = EGY
+	}
+	
+	title = "ITAFNAME5"
+	desc = "ITAFDESC5"
+	picture = "iraqi_coup"
+	
+	option = {
+		name = "ITAFOPTA5"
+		manpower = 10
+	}
+
+}
+
+# Italian claims on Europe
+
+country_event = {
+
+	id = 8015
+	
+	fire_only_once = yes
+	
+	trigger = {
+		tag = ITA
+		war_with = FRA
+		ITA = {
+			controls = 4106
+			controls = 4038
+			controls = 4166
+			controls = 4037
+			controls = 4105
+			controls = 3969
+			controls = 3968
+			controls = 3826
+			controls = 3825
+			controls = 3757
+		}
+	}
+	
+	title = "ITAFNAME6"
+	desc = "ITAFDESC6"
+	picture = "iraqi_coup"
+	
+	option = {
+		name = "ITAFOPTA6"
+		ITA = { set_country_flag = "italian_occupied_france" }
+	}
+}
+
+country_event = {
+
+	id = 8016
+	
+	fire_only_once = yes
+	
+	trigger = {
+		tag = ITA
+		or = {
+			exists = VIC
+			or = {
+				exists = FRA
+				NOT = { GER = { controls = 2613 }}
+			}
+		}
+		ITA = { has_country_flag = "italian_occupied_france" }
+	}
+	
+	title = "ITAFNAME7"
+	desc = "ITAFDESC7"
+	picture = "iraqi_coup"
+	
+	option = {
+		name = "ITAFOPTA7" # Plan 'A'  Corsica and Nizza & Plan 'B' Alpes Maritimes (including the Principality of Monaco) and parts of Alpes-de-Haute-Provence, Hautes Alpes and Savoie.
+		post_allies_italy_region = { secede_province = ITA }
+	}
+
+}
+
+country_event = {
+
+	id = 8017
+	
+	major = yes
+	
+	title = "ITAFNAME8"
+	desc = "ITAFDESC8"
+	picture = "iraqi_coup"
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {	 
+		not = { has_country_flag = "berlin_rome_axis" }
+	}
+	
+	option = {
+		name = "ITAFOPTA8"
+		ITA = { set_country_flag = "ita_appease_germany" }
+		ai_chance = {
+			factor = 10
+		}
+	}
+	
+	option = {
+		name = "ITAFOPTB8"
+		ITA = { set_country_flag = "ita_no_appease_germany" }
+		ai_chance = {
+			factor = 90
+		}
+	}
+
+}
