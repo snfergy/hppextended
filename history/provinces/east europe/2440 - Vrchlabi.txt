@@ -1,0 +1,18 @@
+owner = CZE
+controller = CZE
+add_core = CZE
+
+infra = 8
+air_base = 2
+terrain = hills
+
+land_fort = 2
+1938.10.10 = {
+	owner = GER
+
+	controller = GER
+
+	add_core = GER
+	land_fort = 2
+
+}

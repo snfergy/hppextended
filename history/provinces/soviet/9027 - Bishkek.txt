@@ -1,0 +1,13 @@
+owner = SOV
+controller = SOV
+add_core = SOV
+add_core = KYG
+ 
+
+infra = 5
+energy = 1.00
+industry = 1
+manpower = 2.5
+leadership = 0
+
+points = 1

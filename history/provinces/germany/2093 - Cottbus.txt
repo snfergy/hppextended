@@ -1,0 +1,8 @@
+owner = GER
+controller = GER
+add_core = GER
+
+energy = 12.00
+infra = 10
+industry = 2
+points = 1

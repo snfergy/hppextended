@@ -1,0 +1,18 @@
+owner = CZE
+controller = CZE
+add_core = CZE
+add_core = SLO
+
+leadership = 0
+terrain = mountain
+infra = 6
+
+points = 1
+1939.3.14 = {
+	owner = SLO
+
+	controller = SLO
+
+	add_core = SLO
+
+}

@@ -1,0 +1,9 @@
+owner = SCH
+controller = SCH
+add_core = SCH
+
+terrain = woodedhills
+
+infra = 6
+land_fort = 5
+points = 1

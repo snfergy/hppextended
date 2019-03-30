@@ -1,0 +1,23 @@
+owner = CZE
+controller = CZE
+add_core = CZE
+add_core = GER
+
+infra = 8
+
+terrain = mountain
+
+strategic_resource = uranium
+
+land_fort = 2
+rare_materials = 2.00
+points = 1
+1938.10.10 = {
+	owner = GER
+
+	controller = GER
+
+	add_core = GER
+	land_fort = 2
+
+}

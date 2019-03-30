@@ -1,0 +1,8 @@
+owner = MAN
+controller = MAN
+add_core = MAN
+add_core = CHI
+add_core = CHC
+naval_base = 1
+infra = 5
+points = 1

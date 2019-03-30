@@ -1,0 +1,11 @@
+owner = SCH
+controller = SCH
+add_core = SCH
+
+terrain = woodedhills
+
+energy = 3.00
+land_fort = 4
+anti_air = 3
+infra = 8
+points = 1

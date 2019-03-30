@@ -1,0 +1,8 @@
+owner = USA
+
+controller = USA
+
+
+infra = 8
+naval_base = 1
+points = 1

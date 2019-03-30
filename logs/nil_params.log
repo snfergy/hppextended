@@ -1,0 +1,3 @@
+07/10/17 02:47:46, Current callstack:
+	[string "script/ai_diplomacy.lua"], line 470: NAME NOT FOUND
+		Variables:

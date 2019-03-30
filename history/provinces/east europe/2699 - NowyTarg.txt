@@ -1,0 +1,15 @@
+owner = POL
+controller = POL
+add_core = POL
+
+terrain = hills
+
+infra = 6
+
+infra = 6
+
+infra = 6
+1940.5.10 = {
+	controller = GER
+
+}

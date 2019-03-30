@@ -1,0 +1,10 @@
+owner = IND
+controller = IND
+add_core = IND
+industry = 2
+infra = 6
+manpower = 5.00
+leadership = 0
+
+infra = 6
+points = 3

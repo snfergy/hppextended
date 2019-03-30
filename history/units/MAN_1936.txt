@@ -1,0 +1,154 @@
+theatre = {
+
+	name = "Mukden Zuigao Tongshuai Bu"
+
+	location = 4685
+
+	regiment = { type = hq_brigade name = "Mukden Zuigao Tongshuai Bu HQ" historical_model = 0 }
+	army = {
+		name = "5. Qu Jun Chengde"
+		location = 4452
+		regiment = { type = hq_brigade name = "5. Qu Jun Chengde HQ" historical_model = 0 }
+		division = {
+			name = "7 Chengde Bubing Shi"
+			location = 4452
+			is_reserve = yes
+			regiment = { type = militia_brigade name = "24. Mínbing Tuán" experience = 5 historical_model = 2 }
+			regiment = { type = militia_brigade name = "25. Mínbing Tuán" experience = 5 historical_model = 2 }
+			regiment = { type = militia_brigade name = "26. Mínbing Tuán" experience = 5 historical_model = 2 }			
+			regiment = { type = cavalry_brigade name = "6. Qíbing Tuán" experience = 5 historical_model = 2 }
+		}
+	}	
+}
+theatre = {
+
+	name = "Harbin Zuigao Tongshuai Bu"
+
+	location = 7139
+
+	regiment = { type = hq_brigade name = "Harbin Zuigao Tongshuai Bu HQ" historical_model = 0 }
+
+	army = {
+		name = "3. Qu Jun Qiqihar"
+		location = 7139
+		regiment = { type = hq_brigade name = "3. Qu Jun Qiqihar HQ" historical_model = 0 }	
+		division = {
+			name = "5. Qiqihar Bubing Shi"
+			location = 7095
+			is_reserve = yes
+			regiment = { type = militia_brigade name = "11. Mínbing Tuán" experience = 5 historical_model = 2 }
+			regiment = { type = militia_brigade name = "12. Mínbing Tuán" experience = 5 historical_model = 2 }
+			regiment = { type = militia_brigade name = "13. Mínbing Tuán" experience = 5 historical_model = 2 }
+		}
+		division = {
+			name = "6. Qiqihar Bubing Shi"
+			location = 7095
+			is_reserve = yes
+			regiment = { type = militia_brigade name = "14. Mínbing Tuán" experience = 5 historical_model = 2 }
+			regiment = { type = militia_brigade name = "15. Mínbing Tuán" experience = 5 historical_model = 2 }
+			regiment = { type = cavalry_brigade name = "4. Qíbing Tuán" experience = 5 historical_model = 2 }
+			regiment = { type = horse_towed_support_brigade name = "1. Huopao Tuán" experience = 5 historical_model = 0 }			
+		}		
+	}	
+	army = {
+		name = "4. Qu Jun Harbin"
+		location = 7139
+		regiment = { type = hq_brigade name = "4. Qu Jun Harbin HQ" historical_model = 0 }	
+		division = {
+			name = "7. Harbin Bubing Shi"
+			location = 7139
+			is_reserve = yes
+			regiment = { type = militia_brigade name = "16. Mínbing Tuán" experience = 5 historical_model = 2 }
+			regiment = { type = militia_brigade name = "17. Mínbing Tuán" experience = 5 historical_model = 2 }
+			regiment = { type = militia_brigade name = "18. Mínbing Tuán" experience = 5 historical_model = 2 }
+		}
+		division = {
+			name = "8. Harbin Bubing Shi"
+			location = 7139
+			is_reserve = yes
+			regiment = { type = militia_brigade name = "19. Mínbing Tuán" experience = 5 historical_model = 2 }
+			regiment = { type = militia_brigade name = "20. Mínbing Tuán" experience = 5 historical_model = 2 }
+			regiment = { type = militia_brigade name = "21. Mínbing Tuán" experience = 5 historical_model = 2 }
+		}
+		division = {
+			name = "9. Harbin Bubing Shi"
+			location = 7139
+			is_reserve = yes
+			regiment = { type = militia_brigade name = "22. Mínbing Tuán" experience = 5 historical_model = 2 }
+			regiment = { type = militia_brigade name = "23. Mínbing Tuán" experience = 5 historical_model = 2 }
+			regiment = { type = cavalry_brigade name = "5. Qíbing Tuán" experience = 5 historical_model = 2 }
+			regiment = { type = horse_towed_support_brigade name = "2. Huopao Tuán" experience = 5 historical_model = 0 }			
+		}		
+	}
+}
+
+########################################################
+#Manchurian Expeditionary Armies (returned to Manchukuo)
+########################################################
+
+armygroup = {
+	name = "Hoten no Ensei-Gun" # Mukden Manchurian Troops
+	location = 4685
+	regiment = { type = hq_brigade name = "Mukden Zuigao Tongshuai Bu HQ" historical_model = 0 }
+	army = {
+		name = "1. Qu Jun Fang'tien"
+		location = 4685
+		regiment = { type = hq_brigade name = "1. Qu Jun Fang'tien HQ" historical_model = 0 }	
+		division = {
+			name = "1. Fang'tien Bubing Shi"
+			location = 4685
+			is_reserve = yes
+			regiment = { type = militia_brigade name = "1. Mínbing Tuán" experience = 5 historical_model = 2 }
+			regiment = { type = militia_brigade name = "2. Mínbing Tuán" experience = 5 historical_model = 2 }
+			regiment = { type = militia_brigade name = "3. Mínbing Tuán" experience = 5 historical_model = 2 }
+		}
+		division = {
+			name = "2. Fang'tien Bubing Shi"
+			location = 4685
+			is_reserve = yes
+			regiment = { type = militia_brigade name = "4. Mínbing Tuán" experience = 5 historical_model = 2 }
+			regiment = { type = militia_brigade name = "5. Mínbing Tuán" experience = 5 historical_model = 2 }
+			regiment = { type = militia_brigade name = "6. Mínbing Tuán" experience = 5 historical_model = 2 }
+		}
+	}	
+	army = {
+		name = "2. Qu Jun Ji'lin"
+		location = 4685
+		regiment = { type = hq_brigade name = "2. Qu Jun Ji'lin HQ" historical_model = 0 }
+		division= {
+			name = "3. Ji'lin Bubing Shi"
+			location = 4685
+			is_reserve = yes
+			regiment = { type = militia_brigade name = "7. Mínbing Tuán" experience = 5 historical_model = 2 }
+			regiment = { type = militia_brigade name = "8. Mínbing Tuán" experience = 5 historical_model = 2 }
+			regiment = { type = horse_towed_support_brigade name = "3. Huopao Tuán" experience = 5 historical_model = 0 }			
+		}		
+		division= {
+			name = "4. Man'chu Lü Bubing Shi"
+			location = 4685
+			is_reserve = yes
+			regiment = { type = militia_brigade name = "9. Mínbing Tuán" experience = 5 historical_model = 2 }
+			regiment = { type = militia_brigade name = "10. Mínbing Tuán" experience = 5 historical_model = 2 }
+			regiment = { type = horse_towed_support_brigade name = "4. Huopao Tuán" experience = 5 historical_model = 0 }			
+		}
+		division= {
+			name = "1. Man'chu Qíbing Shi"
+			location = 4685
+			is_reserve = yes
+			regiment = { type = cavalry_brigade name = "1. Qíbing Tuán" experience = 5 historical_model = 2 }
+			regiment = { type = cavalry_brigade name = "2. Qíbing Tuán" experience = 5 historical_model = 2 }
+			regiment = { type = cavalry_brigade name = "3. Qíbing Tuán" experience = 5 historical_model = 2 }
+		}
+	}
+
+}
+
+#theatre = {
+
+#	name = "Xinjing Zuigao Tongshuai Bu"
+
+#	location = 4452
+
+#	regiment = { type = hq_brigade name = "Xinjing Zuigao Tongshuai Bu HQ" historical_model = 0 }
+#
+#}

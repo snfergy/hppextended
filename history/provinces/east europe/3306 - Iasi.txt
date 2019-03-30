@@ -1,0 +1,9 @@
+owner = ROM
+controller = ROM
+add_core = ROM
+
+industry = 3
+infra = 8
+manpower = 2.00
+leadership = 0
+points = 2

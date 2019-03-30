@@ -1,0 +1,9 @@
+owner = GER
+controller = GER
+add_core = GER
+
+terrain = woods
+
+infra = 8
+points = 1
+1938.9.1 = { land_fort = 1 }

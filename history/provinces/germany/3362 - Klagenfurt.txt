@@ -1,0 +1,17 @@
+owner = AUS
+controller = AUS
+add_core = AUS
+
+energy = 1.00
+industry = 1
+anti_air = 1
+infra = 8
+points = 2
+1938.3.12 = {
+	owner = GER
+
+	controller = GER
+
+	add_core = GER
+
+}

@@ -1,0 +1,9 @@
+owner = GER
+controller = GER
+add_core = GER
+
+terrain = woodedhills
+
+infra = 10
+
+infra = 10
