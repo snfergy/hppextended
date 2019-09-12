@@ -216,10 +216,20 @@ country_event = {
 		USA = { set_country_flag = "aircraft_industry_2" }
 		JAP = { set_country_flag = "aircraft_industry_1" }
 
-		# Give 10% chance for Germany to go for the Soviets first!
+		# Give 20% chance for Germany to go for the Soviets first!
 		random_list = {
-			10 = { set_global_flag = "SovietsFirst" }
-			90 = { clr_global_flag = "SovietsFirst" }
+			20 = { set_global_flag = "SovietsFirst" }
+			80 = { clr_global_flag = "SovietsFirst" }
+		}
+		# Give 20% chance for Italy to assert it's self vs. Germany.
+		random_list = {
+			20 = { set_global_flag = "IndependentItaly" }
+			80 = { clr_global_flag = "IndependentItaly" }
+		}
+		# Give 20% chance for France to abandon Benelux and extend the Maginot to the north.
+		random_list = {
+			20 = { set_global_flag = "AbandonBenelux" }
+			80 = { clr_global_flag = "AbandonBenelux" }
 		}
 	}
 }

@@ -275,3 +275,5 @@ country_event = {
 		relation = { who = SOV value = -25 }
 	}	
 }
+
+# Setup German Puppet state in Romania

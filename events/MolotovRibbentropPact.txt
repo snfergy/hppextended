@@ -140,6 +140,8 @@ country_event = {
 	option = {
 		name = "Bring them Socialism!"
 		ai_chance = { factor = 0 }
+		# TO-DO Invasion into German Sphere of Influence.
+		#GER = { country_event = 150# }
 		ROM = { country_event = 1508 }
 		any_country = {
 			limit = {
@@ -904,3 +906,59 @@ country_event = {
 	}
 }
 
+# German response to Soviet Aggression into their sphere of influence
+country_event = {
+
+	id = 1533
+	
+	trigger = {
+		tag = GER
+		not = { war_with = SOV }
+		not = { SOV = { has_country_flag = "su_signs_peace" } }
+		not = { has_country_flag = "mol_rib_pact_broken" }
+		not = { has_country_flag = "sov_attack_on_our_sphere_of_influence" }
+		or = {
+			has_country_flag = "soviet_accepts_mol_rib_pact" # This flag isn't assigned anywhere
+			SOV = { has_country_flag = "mol_rib_pact" }
+		}
+		or = {
+			and = {
+				GER = { war_with = LIT }
+				GER = { NOT = { has_country_flag = "M_R_Pact_intact" } }
+			}
+			GER = { war_with = LAT }
+			GER = { war_with = EST }
+			GER = { war_with = FIN }
+			AND = {
+				LIT = { vassal_of = GER }
+				GER = { NOT = { has_country_flag = "M_R_Pact_intact" } }
+			}
+			LAT = { vassal_of = GER }
+			EST = { vassal_of = GER }
+			FIN = { vassal_of = GER }
+		}
+	}
+	
+	is_triggered_only = yes
+
+	title = "The pact is broken!"
+	desc = "The Soviets have deliberately broken the Molotov-Ribbentrop Pact! The Non-Agression Pact is no longer in effect!"
+	picture = "soviet_air"
+
+	option = {
+		name = "Traitors!"
+		relation = { who = SOV value = -50 }
+		end_non_aggression_pact = SOV
+		
+		SOV = { clr_country_flag = "mol_rib_pact" }
+		GER = { clr_country_flag = "soviet_accepts_mol_rib_pact" }
+		
+		SOV = { clr_country_flag = "ger_sov_coop" }
+		GER = { clr_country_flag = "ger_sov_coop" }
+		
+		SOV = { set_country_flag = "mol_rib_pact_broken" }
+		GER = { set_country_flag = "mol_rib_pact_broken" }
+		
+		set_country_flag = "german_attack_on_our_sphere_of_influence"
+	}
+}

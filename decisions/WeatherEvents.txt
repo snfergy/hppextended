@@ -1,0 +1,62 @@
+diplomatic_decisions = {
+
+	weather_spring = {
+		potential = {
+			tag = GOD
+			month = 3
+			NOT = { has_country_flag = { weather_spring_flag } }
+		}
+		allow = {
+		}
+		effect = {
+			GOD = { set_country_flag = { weather_spring_flag } }
+			baden_region = { 
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	weather_summer = {
+		potential = {
+			tag = GOD
+			month = 5
+		}
+		allow = {
+		}
+		effect = {
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	weather_fall = {
+		potential = {
+			tag = GOD
+			month = 9
+		}
+		allow = {
+		}
+		effect = {
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	weather_winter = {
+		potential = {
+			tag = GOD
+			month = 11
+		}
+		allow = {
+		}
+		effect = {
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+}

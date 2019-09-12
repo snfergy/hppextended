@@ -6,24 +6,22 @@ diplomatic_decisions = {
 			tag = GER
 			exists = SOV
 			not = { has_country_flag = "op_barbarossa" }
-			or = {
+			OR = {
 				#Poland is in Axis or is a puppet of Germany
-				AND = {
-					or = {
-						POL = { faction = axis }
-						POL = { vassal_of = GER }
-					}
+				OR = {
+					POL = { faction = axis }
+					POL = { vassal_of = GER }
 				}
-				GER = { neighbour = SOV }
-				any_neighbor_country = {
-					faction = comintern
-				}
+			}
+			GER = { neighbour = SOV }
+			any_neighbor_country = {
+				faction = comintern
 			}
 			not = { war_with = SOV }
 			SOV = { not = { has_country_flag = "su_signs_peace" } }	# No Bitter Peace yet.
 		}
 		allow = {
-			or = {
+			OR = {
 				ai = no
 				not = {
 					any_neighbor_country = {
@@ -52,6 +50,8 @@ diplomatic_decisions = {
 			factor = 1
 		}
 	}
+	
+	
 	
 	deal_with_the_traitors = {
 		major = yes

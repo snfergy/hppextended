@@ -19,13 +19,13 @@ diplomatic_decisions = {
 			not = { war_with = POL }
 		}
 		allow = {
-			date = 1939.6.1
-			not = { exists = AUS } # Anschluss of Austria
-			or = {
-				has_country_flag = "first_vienna_award"
-				has_country_flag = "first_vienna_award_hungary"
-				controls = 2562 # Praha
-			}
+			date = 1939.5.1
+			# not = { exists = AUS } # Anschluss of Austria
+			#or = {
+			#	has_country_flag = "first_vienna_award"
+			#	has_country_flag = "first_vienna_award_hungary"
+			#	controls = 2562 # Praha
+			#}
 			POL = {
 				not = { faction = axis }
 				not = { alliance_with = GER }
@@ -127,7 +127,7 @@ diplomatic_decisions = {
 			factor = 1
 		}
 	}
-	# In case Estinia doesn't exist, fire this version
+	# In case Estonia doesn't exist, fire this version
 	ultimatum_to_the_baltic_states_v2 = {
 		major = yes
 		potential = {

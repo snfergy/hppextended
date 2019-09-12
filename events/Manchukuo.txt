@@ -12,7 +12,7 @@ country_event = {
 	}
 
 	title = "Japanese Millitary Academies"
-	desc = "The need to foster a reliable and efficent Manchukuoan army and officer cadre led to the establishment of several academies. Under the supervision of Japanese advisors, various ethnic groups were trained. This will be simulated with a event modifier"
+	desc = "The need to foster a reliable and efficent Manchurian army and officer cadre led to the establishment of several academies. Under the supervision of Japanese advisors, various ethnic groups were trained. This will be simulated with a event modifier"
 	picture = "khalkhin_gol"
 	
 	option = {
@@ -55,7 +55,7 @@ country_event = {
 	
 }
 
-#This event is for if the player decides to annex Manchuko via event
+#This event is for if the player decides to annex Manchuko via event. It will deal with the bandits and other rebels in the Manchurian countryside.
 country_event = {
 
 	id = 2872
@@ -153,6 +153,7 @@ country_event = {
 	
 }
 
+#This event is for dealing with the bandits and other rebels in the Manchurian countryside.
 country_event = {
 
 	id = 2875
@@ -199,6 +200,7 @@ country_event = {
 	
 }
 
+#Ditto
 country_event = {
 
 	id = 2876
@@ -250,6 +252,7 @@ country_event = {
 	
 }
 
+#Ditto
 country_event = {
 
 	id = 2877
@@ -275,6 +278,7 @@ country_event = {
 	
 }
 
+#Choosing to join the Unified Front or remaining loyal to the Japanese.
 country_event = {
 
 	id = 2878
@@ -293,12 +297,18 @@ country_event = {
 	
 	option = {
 		name = "MANFOPTB4"
-		ai_chance = { factor = 100 }
+		ai_chance = { factor = 100 } # For now.
+		set_country_flag = "loyal_japanese"
+	}
+	
+	option = {
+		name = "MANFOPTC4"
 		set_country_flag = "loyal_japanese"
 	}
 	
 }
 
+#Joining the Unified Front, rebellion!
 country_event = {
 
 	id = 2879
@@ -322,5 +332,130 @@ country_event = {
 					attacker_goal = { casus_belli = aquire_all_cores }
 				}
 		}
+	}
+}
+
+#Appealing to the rebels/bandits in the countryside
+country_event = {
+
+	id = 2879
+	
+	trigger = {
+		tag = MAN		
+		MAN = { has_country_flag = "unified_front" }
+	}	
+	
+	fire_only_once = yes
+	
+	title = "Rallying the people."
+	desc = "Following the Japanese occupation of Manchuria, and the establishment of the Empire of Manchuko various resistance groups continued to fight against their occupiers and the new government. Depending on how we've acted we may be able to sway them to fight for a unified Manchuria again."
+	picture = "Xian_Incident"
+		
+	option = {
+		name = "We will attempt to find common ground."
+		THIS = { set_country_flag = "negotiate_with_manchurian_rebels" }
+	}
+	option = {
+		name = "We won't side with mere rebels."
+		THIS = { set_country_flag = "no_negotiate_with_manchurian_rebels" }
+	}
+}
+
+#Appealing to the Russian dispora who settled in Manchuria, particularily the White Russians of the civil war.
+country_event = {
+
+	id = 2879
+	
+	trigger = {
+		tag = MAN		
+		MAN = { has_country_flag = "unified_front" }
+	}	
+	
+	fire_only_once = yes
+	
+	title = "White émigré"
+	desc = "The Russian Civil War led to the exodus of many citizens from it's borders, some of which settled in Manchuria. Among them many harbor anti-Soviet sentiments, and are experinced soldiers in their own right. If we were to support their plight perhaps they could be persuased to aid us."
+	picture = "Xian_Incident"
+		
+	option = {
+		name = "Perhaps we shall add another stripe to our flag." #SOV won't be too happy about you aiding their natural enemies.
+		THIS = { set_country_flag = "negotiate_with_white_emigre" }
+	}
+	option = {
+		name = "There's no need to do so." 
+	}
+}
+
+#Soviet aid to Manchuria.
+country_event = {
+
+	id = 2879
+	
+	trigger = {
+		war = no
+		is_subject = no
+		tag = SOV		
+		exists = { MAN }
+		MAN = { war_with = JAP }
+	}	
+	
+	mean_time_to_happen = {
+		months = 12
+	}
+	
+	title = "Aid the Manchurian insurrection."
+	desc = ""
+	picture = "Xian_Incident"
+		
+	option = {
+		name = "Send them everything they need."
+		supplies = -1000
+		fuel = -500
+		MAN = { country_event = # FILL THIS IN }
+	}
+	option = {
+		name = "We can only spare equipment right now..." 
+		supplies = -1000
+		MAN = { country_event = # FILL THIS IN }
+	}
+	option = {
+		name = "Not right now." 
+	}
+}
+
+#Manchuko receiving minimal Soviet aid.
+country_event = {
+
+	id = 2879
+	
+	is_triggered_only = yes
+
+	
+	title = "Soviet aid."
+	desc = "The Soviets have sent us aid in our ongoing struggle against the Japanese."
+	picture = "Xian_Incident"
+	
+	option = {
+		name = "We'll take anything we can get." 
+		supplies = 1000
+	}
+}
+
+# Manchuko receiving Soviet aid.
+country_event = {
+
+	id = 2879
+	
+	is_triggered_only = yes
+
+	
+	title = "Soviet aid."
+	desc = "The Soviets have sent us aid in our ongoing struggle against the Japanese."
+	picture = "Xian_Incident"
+	
+	option = {
+		name = "We'll take anything we can get." 
+		supplies = 1000
+		fuel = 500
 	}
 }
