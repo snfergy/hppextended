@@ -181,7 +181,10 @@ diplomatic_decisions = {
 		potential = {
 			tag = JAP
 			exists = NJG
-			exists = MAN
+			OR = {
+				exists = MAN
+				JAP = { has_country_flag = "annexed_manchukuo" }
+			}
 			any_owned_province = {
 				or = {
 					is_core = CHI
@@ -267,7 +270,8 @@ diplomatic_decisions = {
 			factor = 1
 		}
 	}
-
+	# Slendermang (13/09/19)
+	# Spelling of Manchukuo has changed over time. Maybe needs to be updated someday.
 	recognition_of_mangukuo = {
 		major = yes
 		potential = {
@@ -279,8 +283,13 @@ diplomatic_decisions = {
 			not = { has_country_flag = "recognition_of_mangukuo" }
 		}
 		allow = {
-			exists = MAN
-			MAN = { vassal_of = JAP }
+			OR = {
+				AND = {
+					exists = MAN
+					MAN = { vassal_of = JAP }
+				}
+				JAP = { has_country_flag = "annexed_manchukuo" }
+			}
 			relation = { who = GER value = 50 }
 			date = 1938.3.1
 			has_country_flag = "anti_comintern"
@@ -301,8 +310,14 @@ diplomatic_decisions = {
 			war_with = CHI
 			CHI = { total_ic = 100 }
 			or = {
-				not = { exists = MAN }			# Mangukuo is done
-				not = { MAN = { vassal_of = JAP } }
+				AND = {
+					not = { exists = MAN }			# Mangukuo is done
+					not = { MAN = { vassal_of = JAP } }
+				}
+				AND = {
+					JAP = { has_country_flag = "annexed_manchukuo" }
+					TODO: not = { MANCHURIA_REGION_PLACEHOLDER = { controlled_by = JAP } } # Find proper region names
+				}
 			}
 			or = {
 				not = { exists = MEN }			# Mengukuo is done
@@ -342,8 +357,14 @@ diplomatic_decisions = {
 			war_with = CHC
 			CHI = { total_ic = 100 }
 			or = {
-				not = { exists = MAN }			# Mangukuo is done
-				not = { MAN = { vassal_of = JAP } }
+				AND = {
+					not = { exists = MAN }			# Mangukuo is done
+					not = { MAN = { vassal_of = JAP } }
+				}
+				AND = {
+					JAP = { has_country_flag = "annexed_manchukuo" }
+					TODO: not = { MANCHURIA_REGION_PLACEHOLDER = { controlled_by = JAP } } # Find proper region names
+				}
 			}
 			or = {
 				not = { exists = MEN }			# Mengukuo is done
@@ -382,8 +403,14 @@ diplomatic_decisions = {
 			tag = JAP
 			war_with = SOV
 			or = {
-				not = { exists = MAN }			# Mangukuo is done
-				not = { MAN = { vassal_of = JAP } }
+				AND = {
+					not = { exists = MAN }			# Mangukuo is done
+					not = { MAN = { vassal_of = JAP } }
+				}
+				AND = {
+					JAP = { has_country_flag = "annexed_manchukuo" }
+					TODO: not = { MANCHURIA_REGION_PLACEHOLDER = { controlled_by = JAP } } # Find proper region names
+				}
 			}
 			or = {
 				not = { exists = MEN }			# Mengukuo is done

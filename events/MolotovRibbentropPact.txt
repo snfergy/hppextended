@@ -15,13 +15,14 @@ country_event = {
 	option = {
 		name = "EVTOPTA1501"			# A Most Excellent Proposition
 		ai_chance = { factor = 100 }
-		
+		# SOV tag ends guarantees
 		end_guarantee = FRA
 		end_guarantee = BUL
 		end_guarantee = ROM
 		end_guarantee = POL
 		end_guarantee = CZE
-		FRA = { end_guarantee = SOV } #The French and Soviet's mutual assitance treaty is concluded
+		FRA = { end_guarantee = SOV } #The French and Soviet's mutual assistance treaty is concluded
+		# All Comintern end guarantees
 		any_country = {
 			limit = { faction = comintern }
 			end_guarantee = FRA
@@ -64,7 +65,7 @@ country_event = {
 	}
 }
 
-# Response to Germany - Soviet Accepts
+# Response to Germany - Soviet Accepts - Event to 1501 A 
 country_event = {
 
 	id = 1502
@@ -97,7 +98,7 @@ country_event = {
 	}
 }
 
-# Response to Germany - Soviet Refuses
+# Response to Germany - Soviet Refuses - Event to 1503 B
 country_event = {
 
 	id = 1503
@@ -116,7 +117,7 @@ country_event = {
 
 
 
-# Soviet Reaction
+# Soviet Reaction - Event to 1502 A
 country_event = {
 
 	id = 1507
@@ -162,7 +163,7 @@ country_event = {
 		}
 	}
 }
-
+# Romania - Reaction - Event to 1507 B
 country_event = {
 
 	id = 1508
@@ -184,7 +185,7 @@ country_event = {
 	}
 }
 
-# Romania - Reaction Event
+# Romania - Reaction Event - \decisions\MolotovRibbentropPact.txt - claim_bessarbia - line 51
 country_event = {
 
 	id = 1509
@@ -232,7 +233,7 @@ country_event = {
 	}
 }
 
-# Response to Soviet - Accept
+# Response to Soviet - Accept - Event to 1507 A
 country_event = {
 
 	id = 1510
@@ -249,7 +250,7 @@ country_event = {
 	}
 }
 
-# Response to Soviet - Refuse
+# Response to Soviet - Refuse - Event to 1511 B
 country_event = {
 
 	id = 1511
@@ -289,7 +290,7 @@ country_event = {
 	}
 }
 
-# Estonia - Reaction Event
+# Estonia - Reaction Event - \decisions\MolotovRibbentropPact.txt - ultimatum_to_the_baltic_states - line 95
 country_event = {
 
 	id = 1512
@@ -352,6 +353,7 @@ country_event = {
 		relation = { who = SOV value = -20 }
 		relation = { who = GER value = -10 }
 		SOV = { country_event = 1514 }
+		#Triggers LAT and LIT -IF NOT- GER puppet
 		any_country = {
 			limit = {
 				or = {
@@ -367,7 +369,7 @@ country_event = {
 	}
 }
 
-# Response to Soviet - Annexation
+# Response to Soviet - Annexation - Event to 1512 A 
 country_event = {
 
 	id = 1513
@@ -389,7 +391,7 @@ country_event = {
 	}
 }
 
-# Response to Soviet - War
+# Response to Soviet - War - Event to 1512 B
 country_event = {
 
 	id = 1514
@@ -405,7 +407,7 @@ country_event = {
 	}
 }
 
-# Latvia - Reaction Event
+# Latvia - Reaction Event - Event to 1512 A 
 country_event = {
 
 	id = 1515
@@ -444,6 +446,7 @@ country_event = {
 		any_owned = { limit = { owned_by = LAT } secede_province = SOV }
 		SOV = { split_troops = 0.75 }
 		SOV = { country_event = 1516 }
+		# If Lithuania exists, and Germany does not have the Moltov-Ribbentrop Pact intact, goto war wih Lithuania
 		any_country = { 
 			limit = { tag = LIT GER = { not = { has_country_flag = "M_R_Pact_Intact" } } }
 			country_event = 1518 
@@ -471,6 +474,7 @@ country_event = {
 		relation = { who = SOV value = -20 }
 		relation = { who = GER value = -10 }
 		SOV = { country_event = 1517 }
+		# LIT gets event 1521
 		any_country = {
 			limit = { tag = LIT }
 			country_event = 1521
@@ -478,7 +482,7 @@ country_event = {
 	}
 }
 
-# Response to Soviet - Annexation
+# Response to Soviet - Annexation - Event to 1515 A 
 country_event = {
 
 	id = 1516
@@ -500,7 +504,7 @@ country_event = {
 	}
 }
 
-# Response to Soviet - War
+# Response to Soviet - War - Event to 1515 B 
 country_event = {
 
 	id = 1517
@@ -516,11 +520,12 @@ country_event = {
 	}
 }
 
-# Lithuania - Reaction Event
+# Lithuania - Reaction Event - Event to 1515 A 
 country_event = {
 
 	id = 1518
 	
+	#IF LIT is not a vassal, OR, LIT is vassal of SOV.
 	trigger = {
 		exists = LIT
 		or = {
@@ -581,7 +586,7 @@ country_event = {
 	}
 }
 
-# Response to Soviet - Annexation
+# Response to Soviet - Annexation of LIT - Event to 1518 A 
 country_event = {
 
 	id = 1519
@@ -603,7 +608,7 @@ country_event = {
 	}
 }
 
-# Response to Soviet - War
+# Response to Soviet - War - Event to 1518 B 
 country_event = {
 
 	id = 1520
@@ -618,7 +623,7 @@ country_event = {
 		name = "EVTOPTA1520"					# OK
 	}
 }
-
+# Form Baltic alliance between Estonia and Latvia, and Lithuania if not puppet of Germany - Event to 1512 A
 country_event = {
 
 	id = 1521
@@ -669,12 +674,19 @@ country_event = {
 
 }
 
+# Germany breaks the M-R Pact.
+
 country_event = {
 
 	id = 1525
 
 	major = yes
-
+	# ALL OF: IF SOV, AND, NOT at war with GER, AND NOT signed bitter peace AND not blind-sided by GER. 
+	# ANY OF: GER OR SOV has MOL_RIB_PACT
+	# ANY OF: 	
+	#			GER war with LIT and MOL_RIB_PACT_INTACT
+	# 			WAR WITH: LAT, EST, FIN
+	#			GER VASSALIZES: LAT, EST, FIN 
 	trigger = {
 		tag = SOV
 		not = { war_with = GER }
@@ -719,6 +731,8 @@ country_event = {
 	}
 }
 
+# Germany - Reaction Event - \decisions\Soviet.txt - german_attack - line 244
+
 country_event = {
 
 	id = 1527
@@ -733,6 +747,8 @@ country_event = {
 		name = "Let them come if they dare!"
 	}
 }
+
+# German-Soviet trade agreement
 
 country_event = {
 
@@ -770,6 +786,8 @@ country_event = {
 	}
 
 }
+
+# German-Soviet trade agreement - Soviet reaction
 
 country_event = {
 
@@ -863,7 +881,7 @@ country_event = {
 		GER = { country_event = 1532 }				# We have noone left to turn to!...
 	}
 }
-# Response to Germany - Annexation
+# Lithuanian Response to Germany - Annexation
 country_event = {
 
 	id = 1531
@@ -885,7 +903,7 @@ country_event = {
 	}
 }
 
-# Response to Germany - War
+# Lithuania response to Germany - War
 country_event = {
 
 	id = 1532
@@ -906,6 +924,7 @@ country_event = {
 	}
 }
 
+TODO:
 # German response to Soviet Aggression into their sphere of influence
 country_event = {
 
@@ -962,3 +981,4 @@ country_event = {
 		set_country_flag = "german_attack_on_our_sphere_of_influence"
 	}
 }
+
