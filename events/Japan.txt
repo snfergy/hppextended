@@ -98,6 +98,8 @@ country_event = {
 	}
 }
 
+# ROC - Reaction Event - \decisions\Mengkukuo.txt - independent_mengkukuo - line 7
+# How to deal with Mongolian insurgency to establish Mengkukuo
 country_event = {
 
 	id = 2705
@@ -136,6 +138,7 @@ country_event = {
 			random_owned = { limit = { infra = 2 } militia_brigade = current militia_brigade = current militia_brigade = current }
 			random_owned = { limit = { infra = 2 } militia_brigade = current militia_brigade = current militia_brigade = current }
 		}
+		# TODO: Event for Japan, choose to direct annex with cores, or create vassal
 		JAP = { create_vassal = MEN }
 	}
 	
@@ -160,6 +163,8 @@ country_event = {
 		popularity = 3
 	}
 }
+
+# Japan - Reaction - Event to 2705 B
 
 country_event = {
 
@@ -191,6 +196,8 @@ country_event = {
 		CHI = { country_event = 2707 }
 	}
 }
+
+# ROC - Reaction - Event to 2706 B
 
 country_event = {
 
@@ -238,7 +245,7 @@ country_event = {
 	}
 }
 
-# Recognition of Manchukuo
+# GER - Recognition of Manchukuo - \decisions\Japan.txt - recognition_of_mangukuo - line 271
 
 country_event = {
 
@@ -529,6 +536,8 @@ country_event = {
 
 }
 
+# ROC - Reaction - Event to 2710 A
+
 country_event = {
 
 	id = 2711
@@ -547,6 +556,8 @@ country_event = {
 
 }
 
+# Japan - Reaction - Event to 2710 A
+
 country_event = {
 
 	id = 2712
@@ -562,6 +573,8 @@ country_event = {
 	}
 
 }
+
+# ROC - Reaction - Event to 2710 B
 
 country_event = {
 
@@ -579,6 +592,8 @@ country_event = {
 
 }
 
+# Japan - Reaction - Event to 2710 B
+
 country_event = {
 
 	id = 2714
@@ -594,6 +609,8 @@ country_event = {
 	}
 
 }
+
+# CHI/CHC/SOV - Reaction - decisions\Japan.txt - negotiated_peace_with_X - lines 297/338/379
 
 country_event = {
 
@@ -625,6 +642,8 @@ country_event = {
 		JAP = { country_event = 2722 }
 	}
 }
+
+# JAP - Reaction - Event to 2720 A
 
 country_event = {
 
@@ -678,6 +697,8 @@ country_event = {
 
 }
 
+# JAP - Reaction - Event to 2720 B
+
 country_event = {
 
 	id = 2722
@@ -695,6 +716,8 @@ country_event = {
 		war_exhaustion = -2
 	}
 }
+
+# ENG/HOL/INO - Reaction Event - decisions\PearlHarbour.txt - east_indies_campaign_v1 - line 3
 
 country_event = {
 
@@ -764,6 +787,8 @@ country_event = {
 	}
 }
 
+# Army-Navy struggle - Army gains influence
+
 country_event = {
 
 	id = 2741
@@ -785,6 +810,8 @@ country_event = {
 		change_variable = { which = "jap_army_navy_struggle" value = -1 }
 	}
 }
+
+# Army-Navy struggle - Army gains influence
 
 country_event = {
 
@@ -808,6 +835,8 @@ country_event = {
 	}
 }
 
+# Army-Navy struggle - Navy gains influence
+
 country_event = {
 
 	id = 2743
@@ -829,6 +858,8 @@ country_event = {
 	}
 }
 
+# Army-Navy struggle - Navy gains influence
+
 country_event = {
 
 	id = 2744
@@ -849,6 +880,8 @@ country_event = {
 		change_variable = { which = "jap_army_navy_struggle" value = +1 }
 	}
 }
+
+# Army-Navy struggle - Navy gains influence
 
 country_event = {
 

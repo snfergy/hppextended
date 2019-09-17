@@ -21,7 +21,7 @@ country_event = {
 		end_guarantee = ROM
 		end_guarantee = POL
 		end_guarantee = CZE
-		FRA = { end_guarantee = SOV } #The French and Soviet's mutual assistance treaty is concluded
+		FRA = { end_guarantee = SOV } # The French and Soviet's mutual assistance treaty is concluded
 		# All Comintern end guarantees
 		any_country = {
 			limit = { faction = comintern }
@@ -878,7 +878,7 @@ country_event = {
 		}
 		relation = { who = SOV value = -10 }
 		relation = { who = GER value = -20 }
-		GER = { country_event = 1532 }				# We have noone left to turn to!...
+		GER = { country_event = 1532 }				# We have no one left to turn to!...
 	}
 }
 # Lithuanian Response to Germany - Annexation
@@ -925,40 +925,77 @@ country_event = {
 }
 
 TODO:
-# German response to Soviet Aggression into their sphere of influence
+# Soviet aggression into German sphere of influence. Not neccesarily in the term of the M-R Pact.
+
 country_event = {
 
 	id = 1533
 	
+	major=yes
+	# ALL OF: IF GER, AND, NOT at war with SOV, AND SOV NOT signed bitter peace AND SOV NOT have 'mol_rib_pact_broken' AND GER NOT have 'sov_attack_on_our_sphere_of_influence'
+	# ANY OF: GER OR SOV has MOL_RIB_PACT
+	# ANY OF: 	
+	#			TODO: SOV war with POL and X
+	#			SOV war with LIT and MOL_RIB_PACT_INTACT
+	#			SOV war with ROM and MOL_RIB_PACT_INTACT
+	# 			SOV war with FIN and sue_for_peace_winter_war -OR- soviets_demand_annexation
+	#			SOV war with SWE
 	trigger = {
 		tag = GER
 		not = { war_with = SOV }
 		not = { SOV = { has_country_flag = "su_signs_peace" } }
-		not = { has_country_flag = "mol_rib_pact_broken" }
+		not = { SOV = { has_country_flag = "mol_rib_pact_broken" } }
 		not = { has_country_flag = "sov_attack_on_our_sphere_of_influence" }
 		or = {
 			has_country_flag = "soviet_accepts_mol_rib_pact" # This flag isn't assigned anywhere
 			SOV = { has_country_flag = "mol_rib_pact" }
 		}
-		or = {
-			and = {
-				GER = { war_with = LIT }
-				GER = { NOT = { has_country_flag = "M_R_Pact_intact" } }
-			}
-			GER = { war_with = LAT }
-			GER = { war_with = EST }
-			GER = { war_with = FIN }
+		# Any of the following:
+		OR = {
+			# Soviet's intrude into German partitioned Lithuania
 			AND = {
-				LIT = { vassal_of = GER }
-				GER = { NOT = { has_country_flag = "M_R_Pact_intact" } }
+				SOV = { war_with = LIT }
+				GER = { has_country_flag = "M_R_Pact_intact" }
 			}
-			LAT = { vassal_of = GER }
-			EST = { vassal_of = GER }
-			FIN = { vassal_of = GER }
+			# TODO: Soviet war-dec on Axis alligned Poland
+			AND = { 
+				OR = {
+					POL = { faction = axis } 
+					POL = { has_country_flag = "" }
+				}
+				SOV = { war_with = POL }
+			} 
+			# TODO: Soviet incursion into Romania, weigh for German AI depending on investmnt
+			AND = {
+				OR = {
+					ROM = { faction = axis }
+					ROM = { has_country_flag = "" }
+				}
+				SOV = { war_with = ROM }
+			}
+			# TODO: Soviet incursion into Finland, take threat into account based on how aggresive Soviets have already been.
+			OR = {
+				OR = {
+					AND = {
+						SOV = { war_with = FIN }
+						FIN = { has_country_flag = "sue_for_peace_winter_war" }
+					}
+					AND = { 
+						SOV = { war_with = FIN }
+						FIN = { has_country_flag = "soviets_demand_annexation"}
+					}
+				}
+			}
+			# Soviets are getting dangerously close to Western/Central Europe...
+			OR = {
+				SOV = { war_with = SWE }
+				GER = { has_country_flag = "M_R_Pact_intact" }
+			}
 		}
 	}
 	
 	is_triggered_only = yes
+	fire_only_once = yes
 
 	title = "The pact is broken!"
 	desc = "The Soviets have deliberately broken the Molotov-Ribbentrop Pact! The Non-Agression Pact is no longer in effect!"
@@ -978,7 +1015,8 @@ country_event = {
 		SOV = { set_country_flag = "mol_rib_pact_broken" }
 		GER = { set_country_flag = "mol_rib_pact_broken" }
 		
-		set_country_flag = "german_attack_on_our_sphere_of_influence"
+		# TODO: If the Allies feel that the Soviets are being too aggresive as well, declare war on them in the partitioning of Poland
+		set_country_flag = "soviet_attack_on_our_sphere_of_influence"
 	}
 }
 
