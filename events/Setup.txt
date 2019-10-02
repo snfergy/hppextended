@@ -216,10 +216,18 @@ country_event = {
 		USA = { set_country_flag = "aircraft_industry_2" }
 		JAP = { set_country_flag = "aircraft_industry_1" }
 
-		# Give 20% chance for Germany to go for the Soviets first!
+		# Give 20% chance for Germany to go for the Soviets first or focus on Plan-Z, and fortify the east!
 		random_list = {
-			20 = { set_global_flag = "SovietsFirst" }
-			80 = { clr_global_flag = "SovietsFirst" }
+			20 = { 
+				random_list = { 
+					50 = { set_global_flag = "SovietsFirst" }
+					50 = { set_global_flag = "PlanZ" }
+				}
+			}
+			80 = { 
+				{ clr_global_flag = "PlanZ" }
+				{ clr_global_flag = "SovietsFirst" }
+			}
 		}
 		# Give 20% chance for Italy to assert it's self vs. Germany.
 		random_list = {
@@ -233,6 +241,7 @@ country_event = {
 		}
 	}
 }
+
 
 country_event = {
 
@@ -849,4 +858,3 @@ country_event = {
 		JAP = { set_country_flag = "annexed_manchukuo" }
 	}
 }
-

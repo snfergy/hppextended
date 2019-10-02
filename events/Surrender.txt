@@ -49,6 +49,9 @@
 # 620	Japan surrenders -> Gives every non Home Islands province to the conquerer, who will then be able to give the
 #			provinces back to their original holder
 #
+# 630  USA surrenders to Japan
+# 631  USA surrenders to Japan - Government in Exile
+#
 # 645	Mengjiang surrenders to CHC/CHI/SOV
 # 650	Manhcukuo surrenders to CHC/CHI/SOV
 # 655	Jingwei   surrenders to CHC/CHI/SOV
@@ -1456,7 +1459,7 @@ country_event = {
 ######################
 # UK goes into Exile #
 ######################
-
+# UK is not in the allies, or no majors exist to host their government in exile.
 country_event = {
 	id = 534
 
@@ -1578,7 +1581,7 @@ country_event = {
 		USA = { neutrality = -20 }
 	}
 }
-
+# UK goes into exile on friendly foreign soil.
 country_event = {
 	id = 535
 
@@ -3402,6 +3405,164 @@ country_event = {
 		war_exhaustion = -3
 		create_vassal = JAP
 		set_country_flag = defeated_japan
+	}
+}
+
+#################################
+#	 USA surrenders to Japan    #
+#################################
+
+country_event = {
+	id = 630
+
+	is_triggered_only = yes # Triggered from \common\cb_types.txt
+
+	major = yes
+
+	trigger = {
+		tag = USA
+		or = {
+			not = { faction = allies }
+			and = {
+				or = {
+					not = { FRA = { faction = allies } }
+					not = { FRA = { is_subject = no } }
+					not = { FRA = { government_in_exile = no } }	# France is Allied
+				}
+				or = {
+					not = { USA = { faction = allies } }
+					not = { USA = { is_subject = no } }
+					not = { USA = { government_in_exile = no } }	# USA is Allied
+				}
+				or = {
+					not = { ITA = { faction = allies } }
+					not = { ITA = { is_subject = no } }
+					not = { ITA = { government_in_exile = no } }	# Italy is Allied
+				}
+				or = {
+					not = { JAP = { faction = allies } }
+					not = { JAP = { is_subject = no } }
+					not = { JAP = { government_in_exile = no } }	# Japan is Allied
+				}
+			}
+		}
+	}
+
+	title = "Surrender"
+	desc = "The President had no choice but to surrender..."
+	picture = "JAP_surrender"
+
+	option = {
+		name = "We have no choice."
+		# Release our overseas possesions... (liberia, Philippines)
+		any_country = {
+			limit = { vassal_of = THIS }
+			country_event = 7201
+		}
+		any_owned = {
+			limit = { region = california_republic_region }
+			secede_province = FROM
+		}
+		any_owned = {
+			# Not the lower 48, and Hawaii and Alaska
+			limit = { 
+				NOT = { continent = north_america } 
+				NOT = { region = USA_5782 } # Northern Hawaiian islands
+				NOT = { region = USA_5812 } # Southern Hawaiian islands
+			}
+			remove_core = USA
+		}
+
+		FROM = { country_event = 632 }
+	}
+}
+
+#######################################################
+#	 USA surrenders to Japan - Government in Exile    #
+#######################################################
+
+country_event = {
+	id = 631
+
+	is_triggered_only = yes # Triggered from \common\cb_types.txt
+
+	major = yes
+
+	trigger = {
+		tag = USA
+		or = {
+			FRA = {
+				faction = allies
+				is_subject = no
+				government_in_exile = no	# France is Allied
+			}
+			USA = {
+				faction = allies
+				is_subject = no
+				government_in_exile = no	# USA is Allied
+			}
+			ITA = {
+				faction = allies
+				is_subject = no
+				government_in_exile = no	# Italy is Allied
+			}
+			JAP = {
+				faction = allies
+				is_subject = no
+				government_in_exile = no	# Japan is Allied
+			}
+		}
+	}
+
+	title = "Surrender"
+	desc = "The President had no choice but to flee the continental United States..."
+	picture = "JAP_surrender"
+
+	option = {
+		name = "We have no choice."
+		any_owned = {
+			limit = { region = california_republic_region }
+			secede_province = FROM
+		}
+		any_owned = {
+			# Not the lower 48, and Hawaii and Alaska
+			limit = { 
+				NOT = { continent = north_america } 
+				NOT = { region = USA_5782 } # Northern Hawaiian islands
+				NOT = { region = USA_5812 } # Southern Hawaiian islands
+			}
+			remove_core = USA
+		}
+
+		FROM = { country_event = 632 }
+	}
+}
+
+#######################################################
+#	 USA surrenders to Japan -  Core and release      #
+#######################################################
+
+country_event = {
+	id = 632
+
+	is_triggered_only = yes
+
+	title = "The USA surrenders"
+	desc = "The American populace is tired and weary of war, the President has no choice but to surrender."
+	picture = "JAP_surrender"
+
+	option = {
+		name = "At last!"
+		war_exhaustion = -3
+		set_country_flag = defeated_usa
+
+		california_republic_region = { add_core = CAL }
+		create_vassal = CAL
+
+		CAL = { 3658 = { secede_province = JAP } } # San Fransisco to Japan as Naval base
+		CAL = { 4694 = { secede_province = JAP } } # Los Angeles to Japan as Naval Base
+		any_owned = { limit = { region = Pacific_Islands owned_by = USA } { secede_province = JAP } } # All Pacific Islands owned by USA
+
 	}
 }
 
