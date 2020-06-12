@@ -3555,9 +3555,10 @@ country_event = {
 		name = "At last!"
 		war_exhaustion = -3
 		set_country_flag = defeated_usa
-
+		release = CAL
 		california_republic_region = { add_core = CAL }
-		create_vassal = CAL
+		
+		JAP = { create_vassal = CAL } 
 
 		CAL = { 3658 = { secede_province = JAP } } # San Fransisco to Japan as Naval base
 		CAL = { 4694 = { secede_province = JAP } } # Los Angeles to Japan as Naval Base

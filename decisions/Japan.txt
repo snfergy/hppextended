@@ -181,10 +181,6 @@ diplomatic_decisions = {
 		potential = {
 			tag = JAP
 			exists = NJG
-			OR = {
-				exists = MAN
-				JAP = { has_country_flag = "annexed_manchukuo" }
-			}
 			any_owned_province = {
 				or = {
 					is_core = CHI
@@ -228,9 +224,12 @@ diplomatic_decisions = {
 	give_chinese_territory_and_manchuria_to_Jingwei = {
 		major = yes
 		potential = {
+			# Don't bother if Japan has chosen to core and annex Manchukuo. Hopefully the engine is smart to do descending order checks.
+			not = { JAP = { has_country_flag = "annexed_manchukuo" } }
 			tag = JAP
 			exists = NJG
 			not = { exists = MAN }
+			
 			any_owned_province = {
 				or = {
 					is_core = CHI
@@ -316,7 +315,10 @@ diplomatic_decisions = {
 				}
 				AND = {
 					JAP = { has_country_flag = "annexed_manchukuo" }
-					TODO: not = { MANCHURIA_REGION_PLACEHOLDER = { controlled_by = JAP } } # Find proper region names
+					not = { nenjiang_region = { controlled_by = JAP } }
+					not = { heilongjiang_region = { controlled_by = JAP } }
+					not = { jilin_region = { controlled_by = JAP } }
+					not = { fengtian_region = { controlled_by = JAP } }
 				}
 			}
 			or = {
@@ -363,7 +365,10 @@ diplomatic_decisions = {
 				}
 				AND = {
 					JAP = { has_country_flag = "annexed_manchukuo" }
-					TODO: not = { MANCHURIA_REGION_PLACEHOLDER = { controlled_by = JAP } } # Find proper region names
+					not = { nenjiang_region = { controlled_by = JAP } }
+					not = { heilongjiang_region = { controlled_by = JAP } }
+					not = { jilin_region = { controlled_by = JAP } }
+					not = { fengtian_region = { controlled_by = JAP } }
 				}
 			}
 			or = {
@@ -409,7 +414,10 @@ diplomatic_decisions = {
 				}
 				AND = {
 					JAP = { has_country_flag = "annexed_manchukuo" }
-					TODO: not = { MANCHURIA_REGION_PLACEHOLDER = { controlled_by = JAP } } # Find proper region names
+					not = { nenjiang_region = { controlled_by = JAP } }
+					not = { heilongjiang_region = { controlled_by = JAP } }
+					not = { jilin_region = { controlled_by = JAP } }
+					not = { fengtian_region = { controlled_by = JAP } }
 				}
 			}
 			or = {

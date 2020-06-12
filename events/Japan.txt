@@ -118,28 +118,7 @@ country_event = {
 		}
 		organisation = -5
 		dissent = 3
-		7326 = { secede_province = MEN }
-		4885 = { secede_province = MEN }
-		4834 = { secede_province = MEN }
-		7312 = { secede_province = MEN }
-		7325 = { secede_province = MEN }
-		7338 = { secede_province = MEN }
-		4932 = { secede_province = MEN }
-		4978 = { secede_province = MEN }
-		4933 = { secede_province = MEN }
-		5016 = { secede_province = MEN }
-		MEN = {
-			capital = 4885
-			energy = 2000
-			metal = 1000
-			rare_materials = 500
-			supplies = 1000
-			manpower = 10
-			random_owned = { limit = { infra = 2 } militia_brigade = current militia_brigade = current militia_brigade = current }
-			random_owned = { limit = { infra = 2 } militia_brigade = current militia_brigade = current militia_brigade = current }
-		}
-		# TODO: Event for Japan, choose to direct annex with cores, or create vassal
-		JAP = { create_vassal = MEN }
+		JAP = { country_event = 2746 }
 	}
 	
 	option = {
@@ -901,5 +880,66 @@ country_event = {
 		name = "Way to go!"
 		set_country_flag = "japan_invested_even_more_into_the_navy"
 		change_variable = { which = "jap_army_navy_struggle" value = +1 }
+	}
+}
+
+country_event = {
+
+	id = 2746
+	
+	is_triggered_only = yes
+	
+	title = "Establishment of Mengkukuo"
+	desc = "Do you wish to establish a puppet state, or directly annex the land and gain cores for gameplay circumstances?"
+	picture = ""
+	
+	option = {
+		name = "Puppet"
+		7326 = { secede_province = MEN }
+		4885 = { secede_province = MEN }
+		4834 = { secede_province = MEN }
+		7312 = { secede_province = MEN }
+		7325 = { secede_province = MEN }
+		7338 = { secede_province = MEN }
+		4932 = { secede_province = MEN }
+		4978 = { secede_province = MEN }
+		4933 = { secede_province = MEN }
+		5016 = { secede_province = MEN }
+		MEN = {
+			capital = 4885
+			energy = 2000
+			metal = 1000
+			rare_materials = 500
+			supplies = 1000
+			manpower = 10
+			random_owned = { limit = { infra = 2 } militia_brigade = current militia_brigade = current militia_brigade = current }
+			random_owned = { limit = { infra = 2 } militia_brigade = current militia_brigade = current militia_brigade = current }
+		}
+
+		JAP = { create_vassal = MEN }
+	}
+	option = {
+		name = "Core"
+		7326 = { add_core = JAP }
+		4885 = { add_core = JAP }
+		4834 = { add_core = JAP }
+		7312 = { add_core = JAP }
+		7325 = { add_core = JAP }
+		7338 = { add_core = JAP }
+		4932 = { add_core = JAP }
+		4978 = { add_core = JAP }
+		4933 = { add_core = JAP }
+		5016 = { add_core = JAP }
+
+		7326 = { secede_province = JAP }
+		4885 = { secede_province = JAP }
+		4834 = { secede_province = JAP }
+		7312 = { secede_province = JAP }
+		7325 = { secede_province = JAP }
+		7338 = { secede_province = JAP }
+		4932 = { secede_province = JAP }
+		4978 = { secede_province = JAP }
+		4933 = { secede_province = JAP }
+		5016 = { secede_province = JAP }
 	}
 }
